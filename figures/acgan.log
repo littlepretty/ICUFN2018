@@ -1,0 +1,240 @@
+Processing UNSW/UNSW_NB15_training-set.csv
+Numberic feature size: (175341, 39)
+Symbolic feature size: (175341, 3)
+Label distribution: [ 56000 119341]
+Label size: (175341, 1)
+Max of integerized symbolic features [132  12   8]
+Min of integerized symbolic features [0 0 0]
+Processing UNSW/UNSW_NB15_testing-set.csv
+Numberic feature size: (82332, 39)
+Symbolic feature size: (82332, 3)
+Label distribution: [37000 45332]
+Label size: (82332, 1)
+Max of integerized symbolic features [132  12  10]
+Min of integerized symbolic features [0 0 0]
+Symbolic feature size:  (175341, 157) (82332, 157)
+One-Hot Encoder info:  [133  13  11]
+Trainset shape: (175341, 196) (175341, 2)
+Finish saving UNSW/train_dataset to UNSW/train_dataset.npy
+Finish saving UNSW/train_labels to UNSW/train_labels.npy as binary lables
+Valid dataset (9879, 196) (9879, 2)
+Validset shape: (9879, 196) (9879, 2)
+Finish saving UNSW/valid_dataset to UNSW/valid_dataset.npy
+Finish saving UNSW/valid_labels to UNSW/valid_labels.npy as binary lables
+Testset shape: (82332, 196) (82332, 2)
+Finish saving UNSW/test_dataset to UNSW/test_dataset.npy
+Finish saving UNSW/test_labels to UNSW/test_labels.npy as binary lables
+Training set (175341, 222) (175341, 2)
+Training set (9879, 222) (9879, 2)
+Training set (82332, 222) (82332, 2)
+AC-GAN-UNSW build and initialized
+Training GAN for 70120 steps
+Batch(100 cases) value function at step 0
+V(D) = -2.773087, V(G) = 0.708471
+Batch(100 cases) value function at step 1753
+V(D) = -0.254044, V(G) = 0.187818
+Batch(100 cases) value function at step 3506
+V(D) = -1.084875, V(G) = -0.192462
+Batch(100 cases) value function at step 5259
+V(D) = -1.069933, V(G) = -0.241566
+Batch(100 cases) value function at step 7012
+V(D) = -0.694483, V(G) = -0.123295
+Batch(100 cases) value function at step 8765
+V(D) = -0.999631, V(G) = -0.195831
+Batch(100 cases) value function at step 10518
+V(D) = -0.958479, V(G) = -0.176958
+Batch(100 cases) value function at step 12271
+V(D) = -0.838985, V(G) = -0.181097
+Batch(100 cases) value function at step 14024
+V(D) = -1.059941, V(G) = -0.181574
+Batch(100 cases) value function at step 15777
+V(D) = -0.989523, V(G) = -0.173831
+Batch(100 cases) value function at step 17530
+V(D) = -0.752322, V(G) = -0.175924
+Batch(100 cases) value function at step 19283
+V(D) = -0.875812, V(G) = -0.298345
+Batch(100 cases) value function at step 21036
+V(D) = -0.871641, V(G) = -0.234380
+Batch(100 cases) value function at step 22789
+V(D) = -1.030289, V(G) = -0.290989
+Batch(100 cases) value function at step 24542
+V(D) = -1.025333, V(G) = -0.159488
+Batch(100 cases) value function at step 26295
+V(D) = -1.330422, V(G) = -0.155450
+Batch(100 cases) value function at step 28048
+V(D) = -1.102543, V(G) = -0.103954
+Batch(100 cases) value function at step 29801
+V(D) = -0.765488, V(G) = -0.107900
+Batch(100 cases) value function at step 31554
+V(D) = -0.690697, V(G) = -0.052993
+Batch(100 cases) value function at step 33307
+V(D) = -0.939234, V(G) = -0.138894
+Batch(100 cases) value function at step 35060
+V(D) = -1.113114, V(G) = -0.084534
+Batch(100 cases) value function at step 36813
+V(D) = -1.068548, V(G) = -0.110346
+Batch(100 cases) value function at step 38566
+V(D) = -1.130083, V(G) = -0.112684
+Batch(100 cases) value function at step 40319
+V(D) = -0.948393, V(G) = -0.138809
+Batch(100 cases) value function at step 42072
+V(D) = -0.940767, V(G) = -0.192873
+Batch(100 cases) value function at step 43825
+V(D) = -0.906192, V(G) = -0.137590
+Batch(100 cases) value function at step 45578
+V(D) = -0.871270, V(G) = -0.189513
+Batch(100 cases) value function at step 47331
+V(D) = -0.714730, V(G) = -0.127357
+Batch(100 cases) value function at step 49084
+V(D) = -0.716704, V(G) = -0.166757
+Batch(100 cases) value function at step 50837
+V(D) = -0.774761, V(G) = -0.238379
+Batch(100 cases) value function at step 52590
+V(D) = -0.785527, V(G) = -0.203261
+Batch(100 cases) value function at step 54343
+V(D) = -0.768722, V(G) = -0.120337
+Batch(100 cases) value function at step 56096
+V(D) = -0.868031, V(G) = -0.068305
+Batch(100 cases) value function at step 57849
+V(D) = -0.942573, V(G) = -0.143677
+Batch(100 cases) value function at step 59602
+V(D) = -0.746812, V(G) = -0.172652
+Batch(100 cases) value function at step 61355
+V(D) = -0.738575, V(G) = -0.145773
+Batch(100 cases) value function at step 63108
+V(D) = -0.877640, V(G) = -0.188414
+Batch(100 cases) value function at step 64861
+V(D) = -0.987598, V(G) = -0.217630
+Batch(100 cases) value function at step 66614
+V(D) = -0.821624, V(G) = -0.176418
+Batch(100 cases) value function at step 68367
+V(D) = -0.952296, V(G) = -0.284746
+Finish training
+V(D) = -0.821958, V(G) = -0.144648
+Fake dataset (175340, 222) (175340, 2)
+Real real_attack set (119341, 222)
+Real real_normal set (56000, 222)
+Real fake_attack set (87670, 222)
+Real fake_normal set (87670, 222)
+Fake set (350681, 222) (350681, 2)
+Mix trainset with fake set (350681, 222) (350681, 2)
+Last layer is softmax(logits)
+Multilayer Perceptron build and initialized
+Training for 280512 steps
+Training set (350681, 222) (350681, 2)
+Minibatch(80 cases) loss at step 28051: 0.027309
+(regterm=0.001757, lr=0.000783)
+Minibatch train accuracy: 97.500000%
+Trainset accuracy: 97.023221%
+Validation accuracy: 83.712926%
+Minibatch(80 cases) loss at step 56102: 0.016445
+(regterm=0.002042, lr=0.000613)
+Minibatch train accuracy: 98.750000%
+Trainset accuracy: 97.138710%
+Validation accuracy: 84.968114%
+Minibatch(80 cases) loss at step 84153: 0.054369
+(regterm=0.002155, lr=0.000460)
+Minibatch train accuracy: 96.250000%
+Trainset accuracy: 97.177777%
+Validation accuracy: 84.745420%
+Minibatch(80 cases) loss at step 112204: 0.035849
+(regterm=0.002233, lr=0.000360)
+Minibatch train accuracy: 96.250000%
+Trainset accuracy: 97.218555%
+Validation accuracy: 87.569592%
+Minibatch(80 cases) loss at step 140255: 0.033782
+(regterm=0.002276, lr=0.000282)
+Minibatch train accuracy: 95.000000%
+Trainset accuracy: 97.132722%
+Validation accuracy: 88.764045%
+Minibatch(80 cases) loss at step 168306: 0.027395
+(regterm=0.002305, lr=0.000212)
+Minibatch train accuracy: 98.750000%
+Trainset accuracy: 97.213422%
+Validation accuracy: 88.794412%
+Minibatch(80 cases) loss at step 196357: 0.016674
+(regterm=0.002320, lr=0.000166)
+Minibatch train accuracy: 97.500000%
+Trainset accuracy: 97.233098%
+Validation accuracy: 88.065594%
+Minibatch(80 cases) loss at step 224408: 0.057001
+(regterm=0.002333, lr=0.000125)
+Minibatch train accuracy: 95.000000%
+Trainset accuracy: 97.319216%
+Validation accuracy: 88.085839%
+Minibatch(80 cases) loss at step 252459: 0.009871
+(regterm=0.002337, lr=0.000098)
+Minibatch train accuracy: 100.000000%
+Trainset accuracy: 97.310946%
+Validation accuracy: 87.579715%
+Minibatch(80 cases) loss at step 280510: 0.026748
+(regterm=0.002345, lr=0.000076)
+Minibatch train accuracy: 98.750000%
+Trainset accuracy: 97.314083%
+Validation accuracy: 87.610082%
+Multilayer Perceptron trained
+Trainset total loss: 0.030762
+***** 2-Class performance *****
+Trainset accuracy: 97.313513%
+     0       1
+------  ------
+138597    5073
+  4348  202663
+Class          0      1    Wtd. Avg.
+---------  -----  -----  -----------
+Precision  96.96  97.56        97.31
+Recall     96.47  97.9         97.31
+F1-Score   96.71  97.73        97.31
+***** 2-Class performance *****
+Validset accuracy: 87.640449%
+   0     1
+----  ----
+3231  1130
+  91  5427
+Class          0      1    Wtd. Avg.
+---------  -----  -----  -----------
+Precision  97.26  82.77        89.16
+Recall     74.09  98.35        87.64
+F1-Score   84.11  89.89        87.34
+***** 2-Class performance *****
+Testset accuracy: 87.586844%
+    0      1
+-----  -----
+27642   9358
+  862  44470
+\begin{tabular}{rr}
+\hline
+     0 &     1 \\
+\hline
+ 27642 &  9358 \\
+   862 & 44470 \\
+\hline
+\end{tabular}
+Class          0      1    Wtd. Avg.
+---------  -----  -----  -----------
+Precision  96.98  82.61        89.07
+Recall     74.71  98.1         87.59
+F1-Score   84.4   89.69        87.31
+\begin{tabular}{lrrr}
+\hline
+ Class     &     0 &     1 &   Wtd. Avg. \\
+\hline
+ Precision & 96.98 & 82.61 &       89.07 \\
+ Recall    & 74.71 & 98.1  &       87.59 \\
+ F1-Score  & 84.4  & 89.69 &       87.31 \\
+\hline
+\end{tabular}
+
+******* Hyperparameter Summary *******
+act_func = RELU
+hidden_layer_size = [400]
+init_lr = 0.001
+num_epochs = 64
+regularization beta = 1e-05
+keep_prob = 0.8
+class_weights = [1.0, 1.0]
+optimizer = AdamOptimizer
+num_steps = 280512
+batch_size = 80
+**************************************
+

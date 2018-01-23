@@ -1,0 +1,44 @@
+\section{Dataset and Preprocessing}
+Among various available datasets~\cite{NSL-KDD, KDDCup, DARPA},
+we choose NSL-KDD dataset~\cite{NSL-KDD} to evaluate the performance of applying
+various deep neural networks to the network intrusion detection problem.
+NSL-KDD dataset originates from the KDDCup 99 dataset~\cite{KDDCup},
+which was used for the third International Knowledge Discovery and Data Mining Tool Competition.
+However, NSL-KDD dataset addresses two issues of the KDDCup 99 dataset.
+First, it eliminates the redundant records existing in KDDCup 99, which takes up
+78\% and 75\% of the records in train and test set, respectively.
+Second, it adds another label, classification difficulty, to each distinct record,
+and samples the dataset such that the fraction of the record
+from a difficulty level is inversely proportional to its difficulty.
+Both enhancements make NSL-KDD dataset more suitable for
+evaluation of intrusion detection systems.
+
+The train dataset consists of 125,973 TCP connection records, while the test dataset
+consists of 22,544 ones.
+A record is defined by 41 features, including 9 basic features of individual
+TCP connections, 13 content features within a connection and 9 temporal features computed
+within a two-second time window, and 10 other features.
+Connections in the train dataset are labeled as either normal or one of the 24 attack
+types.
+There are addtional 14 types of attacks in the test dataset, specifically designed to
+test the classifier's ability to handle novel attacks.
+The task of the classifier is to identify whether a connection is normal or one of the
+4 categories of attacks, namely denial of service (DoS), remote to local (R2L), user to
+root (U2R) and probing.
+Alternatively, we can configure the classifier to report a connection to be either
+normal or attack.
+The former is called 5-class problem, whereas the later 2-class problem,
+throughout this text.
+
+Before feeding the NSL-KDD to neural networks, we need to take some preprocessing steps.
+First and foremost, we need to convert symbolic features and the labels to one-hot encoding
+format.
+For example, if feature $f$ can take $n$ possible values from 1 to $n$,
+feature value $x$ will be converted to a $n$-dimention binary vector with the $x$th
+dimention set to 1 and others set to zero.
+This can be done for the entire dataset (both train and test set)
+using the \texttt{OneHotEncoder} provided by scikit-learn~\cite{OneHotEncoder}.
+Then we shuffled the data, along with its label, so that later in the stochastic
+gradient descent learning phase batch data are already randomized.
+At last, we perform the min-max normalization so that data values are all in the range
+of [0, 1].

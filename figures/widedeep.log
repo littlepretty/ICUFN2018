@@ -1,0 +1,105 @@
+/usr/local/lib/python2.7/dist-packages/pandas/core/computation/__init__.py:18: UserWarning: The installed version of numexpr 2.4.3 is not supported in pandas and will be not be used
+The minimum supported version is 2.4.6
+
+  ver=ver, min_ver=_MIN_NUMEXPR_VERSION), UserWarning)
+['proto', 'service', 'state'] 3
+['dur', 'rate', 'sload', 'dload', 'sinpkt', 'dinpkt', 'sjit', 'djit', 'tcprtt', 'synack', 'ackdat'] 11
+['spkts', 'dpkts', 'sbytes', 'dbytes', 'sttl', 'dttl', 'sloss', 'dloss', 'swin', 'stcpb', 'dtcpb', 'dwin', 'smean', 'dmean', 'trans_depth', 'response_body_len', 'ct_srv_src', 'ct_state_ttl', 'ct_dst_ltm', 'ct_src_dport_ltm', 'ct_dst_sport_ltm', 'ct_dst_src_ltm', 'is_ftp_login', 'ct_ftp_cmd', 'ct_flw_http_mthd', 'ct_src_ltm', 'ct_srv_dst', 'is_sm_ips_ports'] 28
+Headers for dataset file: dur,proto,service,state,spkts,dpkts,sbytes,dbytes,rate,sttl,dttl,sload,dload,sloss,dloss,sinpkt,dinpkt,sjit,djit,swin,stcpb,dtcpb,dwin,tcprtt,synack,ackdat,smean,dmean,trans_depth,response_body_len,ct_srv_src,ct_state_ttl,ct_dst_ltm,ct_src_dport_ltm,ct_dst_sport_ltm,ct_dst_src_ltm,is_ftp_login,ct_ftp_cmd,ct_flw_http_mthd,ct_src_ltm,ct_srv_dst,is_sm_ips_ports,attack_cat,label,
+state ['ACC', 'PAR', 'CLO', 'no', 'INT', 'URN', 'REQ', 'ECO', 'RST', 'FIN', 'CON']
+service ['ftp', 'http', 'snmp', '-', 'smtp', 'pop3', 'ssl', 'ftp-data', 'radius', 'ssh', 'dns', 'dhcp', 'irc']
+proto ['skip', 'ttp', 'tcp', 'cphb', 'rtp', 'iplt', 'tcf', 'narp', 'crtp', 'ax.25', 'ptp', 'chaos', 'merit-inp', 'xtp', 'ipcomp', 'a/n', 'aris', 'bna', 'rsvp', 'nvp', 'trunk-2', 'iatp', '3pc', 'iso-ip', 'ippc', 'pri-enc', 'bbn-rcc', 'emcon', 'wsn', 'idpr', 'sccopmce', 'cftp', 'arp', 'pvp', 'sep', 'secure-vmtp', 'netblt', 'leaf-1', 'pnni', 'zero', 'cpnx', 'i-nlsp', 'larp', 'ddp', 'crudp', 'smp', 'xns-idp', 'vrrp', 'sctp', 'idpr-cmtp', 'ipx-n-ip', 'dcn', 'ipv6-route', 'ggp', 'qnx', 'ddx', 'xnet', 'pup', 'tp++', 'rdp', 'mfe-nsp', 'argus', 'srp', 'visa', 'idrp', 'ospf', 'vmtp', 'nsfnet-igp', 'pgm', 'wb-expak', 'br-sat-mon', 'tlsp', 'igmp', 'unas', 'sun-nd', 'swipe', 'aes-sp3-d', 'iso-tp4', 'l2tp', 'ipv6', 'compaq-peer', 'udp', 'st2', 'fire', 'mhrp', 'hmp', 'micp', 'ipv6-opts', 'icmp', 'isis', 'trunk-1', 'mtp', 'uti', 'ipip', 'mux', 'eigrp', 'leaf-2', 'stp', 'sdrp', 'ipv6-no', 'pim', 'rvd', 'prm', 'ip', 'sps', 'il', 'cbt', 'sprite-rpc', 'ifmp', 'ib', 'any', 'sat-mon', 'igp', 'scps', 'gre', 'encap', 'irtp', 'sat-expak', 'gmtp', 'wb-mon', 'dgp', 'fc', 'etherip', 'snp', 'ipnip', 'mobile', 'egp', 'kryptolan', 'vines', 'pipe', 'ipv6-frag', 'ipcv', 'sm']
+#wide components: 3
+state |V| = 11
+service |V| = 13
+proto |V| = 133
+#deep components: 44
+WARNING:tensorflow:Using temporary folder as model directory: /tmp/tmpf6rmqU
+dealing with UNSW/UNSW_NB15_training-set.csv
+Raw dataset shape: (175341, 42)
+Raw label shape: (175341,)
+dealing with UNSW/UNSW_NB15_testing-set.csv
+Raw dataset shape: (82332, 42)
+Raw label shape: (82332,)
+WARNING:tensorflow:Casting <dtype: 'float32'> labels to bool.
+WARNING:tensorflow:Casting <dtype: 'float32'> labels to bool.
+loss: 51.2613
+accuracy_baseline: 0.5506
+global_step: 40000
+auc: 0.953462
+prediction/mean: 0.654463
+label/mean: 0.5506
+average_loss: 0.320648
+auc_precision_recall: 0.966114
+accuracy: 0.814434
+
+
+['proto', 'service', 'state'] 3
+['dur', 'rate', 'sload', 'dload', 'sinpkt', 'dinpkt', 'sjit', 'djit', 'tcprtt', 'synack', 'ackdat'] 11
+['spkts', 'dpkts', 'sbytes', 'dbytes', 'sttl', 'dttl', 'sloss', 'dloss', 'swin', 'stcpb', 'dtcpb', 'dwin', 'smean', 'dmean', 'trans_depth', 'response_body_len', 'ct_srv_src', 'ct_state_ttl', 'ct_dst_ltm', 'ct_src_dport_ltm', 'ct_dst_sport_ltm', 'ct_dst_src_ltm', 'is_ftp_login', 'ct_ftp_cmd', 'ct_flw_http_mthd', 'ct_src_ltm', 'ct_srv_dst', 'is_sm_ips_ports'] 28
+['dur_quantile', 'rate_quantile', 'sload_quantile', 'dload_quantile', 'sinpkt_quantile', 'dinpkt_quantile', 'sjit_quantile', 'djit_quantile', 'tcprtt_quantile', 'synack_quantile', 'ackdat_quantile', 'spkts_quantile', 'dpkts_quantile', 'sbytes_quantile', 'dbytes_quantile', 'sttl_quantile', 'dttl_quantile', 'sloss_quantile', 'dloss_quantile', 'swin_quantile', 'stcpb_quantile', 'dtcpb_quantile', 'dwin_quantile', 'smean_quantile', 'dmean_quantile', 'trans_depth_quantile', 'response_body_len_quantile', 'ct_srv_src_quantile', 'ct_state_ttl_quantile', 'ct_dst_ltm_quantile', 'ct_src_dport_ltm_quantile', 'ct_dst_sport_ltm_quantile', 'ct_dst_src_ltm_quantile', 'is_ftp_login_quantile', 'ct_ftp_cmd_quantile', 'ct_flw_http_mthd_quantile', 'ct_src_ltm_quantile', 'ct_srv_dst_quantile', 'is_sm_ips_ports_quantile'] 39
+Headers for dataset file: dur,proto,service,state,spkts,dpkts,sbytes,dbytes,rate,sttl,dttl,sload,dload,sloss,dloss,sinpkt,dinpkt,sjit,djit,swin,stcpb,dtcpb,dwin,tcprtt,synack,ackdat,smean,dmean,trans_depth,response_body_len,ct_srv_src,ct_state_ttl,ct_dst_ltm,ct_src_dport_ltm,ct_dst_sport_ltm,ct_dst_src_ltm,is_ftp_login,ct_ftp_cmd,ct_flw_http_mthd,ct_src_ltm,ct_srv_dst,is_sm_ips_ports,attack_cat,label,
+state ['ACC', 'PAR', 'CLO', 'no', 'INT', 'URN', 'REQ', 'ECO', 'RST', 'FIN', 'CON']
+service ['ftp', 'http', 'snmp', '-', 'smtp', 'pop3', 'ssl', 'ftp-data', 'radius', 'ssh', 'dns', 'dhcp', 'irc']
+proto ['skip', 'ttp', 'tcp', 'cphb', 'rtp', 'iplt', 'tcf', 'narp', 'crtp', 'ax.25', 'ptp', 'chaos', 'merit-inp', 'xtp', 'ipcomp', 'a/n', 'aris', 'bna', 'rsvp', 'nvp', 'trunk-2', 'iatp', '3pc', 'iso-ip', 'ippc', 'pri-enc', 'bbn-rcc', 'emcon', 'wsn', 'idpr', 'sccopmce', 'cftp', 'arp', 'pvp', 'sep', 'secure-vmtp', 'netblt', 'leaf-1', 'pnni', 'zero', 'cpnx', 'i-nlsp', 'larp', 'ddp', 'crudp', 'smp', 'xns-idp', 'vrrp', 'sctp', 'idpr-cmtp', 'ipx-n-ip', 'dcn', 'ipv6-route', 'ggp', 'qnx', 'ddx', 'xnet', 'pup', 'tp++', 'rdp', 'mfe-nsp', 'argus', 'srp', 'visa', 'idrp', 'ospf', 'vmtp', 'nsfnet-igp', 'pgm', 'wb-expak', 'br-sat-mon', 'tlsp', 'igmp', 'unas', 'sun-nd', 'swipe', 'aes-sp3-d', 'iso-tp4', 'l2tp', 'ipv6', 'compaq-peer', 'udp', 'st2', 'fire', 'mhrp', 'hmp', 'micp', 'ipv6-opts', 'icmp', 'isis', 'trunk-1', 'mtp', 'uti', 'ipip', 'mux', 'eigrp', 'leaf-2', 'stp', 'sdrp', 'ipv6-no', 'pim', 'rvd', 'prm', 'ip', 'sps', 'il', 'cbt', 'sprite-rpc', 'ifmp', 'ib', 'any', 'sat-mon', 'igp', 'scps', 'gre', 'encap', 'irtp', 'sat-expak', 'gmtp', 'wb-mon', 'dgp', 'fc', 'etherip', 'snp', 'ipnip', 'mobile', 'egp', 'kryptolan', 'vines', 'pipe', 'ipv6-frag', 'ipcv', 'sm']
+#wide components: 7
+indicator columns 2
+state |V| = 11
+service |V| = 13
+proto |V| = 133
+embedding columns 3
+#deep components: 83
+WARNING:tensorflow:Using temporary folder as model directory: /tmp/tmpeBr6q8
+Hidden units in each layer: [400, 512, 640]
+dealing with UNSW/train_temp.csv
+Raw dataset shape: (175341, 81)
+Raw label shape: (175341,)
+dealing with UNSW/test_temp.csv
+Raw dataset shape: (82332, 81)
+Raw label shape: (82332,)
+WARNING:tensorflow:Casting <dtype: 'float32'> labels to bool.
+WARNING:tensorflow:Casting <dtype: 'float32'> labels to bool.
+loss: 30.6021
+accuracy_baseline: 0.5506
+global_step: 100000
+auc: 0.975496
+prediction/mean: 0.55644
+label/mean: 0.5506
+average_loss: 0.191421
+auc_precision_recall: 0.981613
+accuracy: 0.903245
+
+['proto', 'service', 'state'] 3
+['dur', 'rate', 'sload', 'dload', 'sinpkt', 'dinpkt', 'sjit', 'djit', 'tcprtt', 'synack', 'ackdat'] 11
+['spkts', 'dpkts', 'sbytes', 'dbytes', 'sttl', 'dttl', 'sloss', 'dloss', 'swin', 'stcpb', 'dtcpb', 'dwin', 'smean', 'dmean', 'trans_depth', 'response_body_len', 'ct_srv_src', 'ct_state_ttl', 'ct_dst_ltm', 'ct_src_dport_ltm', 'ct_dst_sport_ltm', 'ct_dst_src_ltm', 'is_ftp_login', 'ct_ftp_cmd', 'ct_flw_http_mthd', 'ct_src_ltm', 'ct_srv_dst', 'is_sm_ips_ports'] 28
+['dur_quantile', 'rate_quantile', 'sload_quantile', 'dload_quantile', 'sinpkt_quantile', 'dinpkt_quantile', 'sjit_quantile', 'djit_quantile', 'tcprtt_quantile', 'synack_quantile', 'ackdat_quantile', 'spkts_quantile', 'dpkts_quantile', 'sbytes_quantile', 'dbytes_quantile', 'sttl_quantile', 'dttl_quantile', 'sloss_quantile', 'dloss_quantile', 'swin_quantile', 'stcpb_quantile', 'dtcpb_quantile', 'dwin_quantile', 'smean_quantile', 'dmean_quantile', 'trans_depth_quantile', 'response_body_len_quantile', 'ct_srv_src_quantile', 'ct_state_ttl_quantile', 'ct_dst_ltm_quantile', 'ct_src_dport_ltm_quantile', 'ct_dst_sport_ltm_quantile', 'ct_dst_src_ltm_quantile', 'is_ftp_login_quantile', 'ct_ftp_cmd_quantile', 'ct_flw_http_mthd_quantile', 'ct_src_ltm_quantile', 'ct_srv_dst_quantile', 'is_sm_ips_ports_quantile'] 39
+Headers for dataset file: dur,proto,service,state,spkts,dpkts,sbytes,dbytes,rate,sttl,dttl,sload,dload,sloss,dloss,sinpkt,dinpkt,sjit,djit,swin,stcpb,dtcpb,dwin,tcprtt,synack,ackdat,smean,dmean,trans_depth,response_body_len,ct_srv_src,ct_state_ttl,ct_dst_ltm,ct_src_dport_ltm,ct_dst_sport_ltm,ct_dst_src_ltm,is_ftp_login,ct_ftp_cmd,ct_flw_http_mthd,ct_src_ltm,ct_srv_dst,is_sm_ips_ports,attack_cat,label,
+state ['ACC', 'PAR', 'CLO', 'no', 'INT', 'URN', 'REQ', 'ECO', 'RST', 'FIN', 'CON']
+service ['ftp', 'http', 'snmp', '-', 'smtp', 'pop3', 'ssl', 'ftp-data', 'radius', 'ssh', 'dns', 'dhcp', 'irc']
+proto ['skip', 'ttp', 'tcp', 'cphb', 'rtp', 'iplt', 'tcf', 'narp', 'crtp', 'ax.25', 'ptp', 'chaos', 'merit-inp', 'xtp', 'ipcomp', 'a/n', 'aris', 'bna', 'rsvp', 'nvp', 'trunk-2', 'iatp', '3pc', 'iso-ip', 'ippc', 'pri-enc', 'bbn-rcc', 'emcon', 'wsn', 'idpr', 'sccopmce', 'cftp', 'arp', 'pvp', 'sep', 'secure-vmtp', 'netblt', 'leaf-1', 'pnni', 'zero', 'cpnx', 'i-nlsp', 'larp', 'ddp', 'crudp', 'smp', 'xns-idp', 'vrrp', 'sctp', 'idpr-cmtp', 'ipx-n-ip', 'dcn', 'ipv6-route', 'ggp', 'qnx', 'ddx', 'xnet', 'pup', 'tp++', 'rdp', 'mfe-nsp', 'argus', 'srp', 'visa', 'idrp', 'ospf', 'vmtp', 'nsfnet-igp', 'pgm', 'wb-expak', 'br-sat-mon', 'tlsp', 'igmp', 'unas', 'sun-nd', 'swipe', 'aes-sp3-d', 'iso-tp4', 'l2tp', 'ipv6', 'compaq-peer', 'udp', 'st2', 'fire', 'mhrp', 'hmp', 'micp', 'ipv6-opts', 'icmp', 'isis', 'trunk-1', 'mtp', 'uti', 'ipip', 'mux', 'eigrp', 'leaf-2', 'stp', 'sdrp', 'ipv6-no', 'pim', 'rvd', 'prm', 'ip', 'sps', 'il', 'cbt', 'sprite-rpc', 'ifmp', 'ib', 'any', 'sat-mon', 'igp', 'scps', 'gre', 'encap', 'irtp', 'sat-expak', 'gmtp', 'wb-mon', 'dgp', 'fc', 'etherip', 'snp', 'ipnip', 'mobile', 'egp', 'kryptolan', 'vines', 'pipe', 'ipv6-frag', 'ipcv', 'sm']
+#wide components: 7
+indicator columns 2
+state |V| = 11
+service |V| = 13
+proto |V| = 133
+embedding columns 3
+#deep components: 83
+Hidden units in each layer: [400, 512, 640]
+dealing with UNSW/train_temp.csv
+Raw dataset shape: (175341, 81)
+Raw label shape: (175341,)
+dealing with UNSW/test_temp.csv
+Raw dataset shape: (82332, 81)
+Raw label shape: (82332,)
+WARNING:tensorflow:Casting <dtype: 'float32'> labels to bool.
+WARNING:tensorflow:Casting <dtype: 'float32'> labels to bool.
+loss: 30.6942
+accuracy_baseline: 0.5506
+global_step: 220000
+auc: 0.978802
+prediction/mean: 0.590637
+label/mean: 0.5506
+average_loss: 0.191997
+auc_precision_recall: 0.984002
+accuracy: 0.909306
+

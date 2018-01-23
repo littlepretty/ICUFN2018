@@ -1,0 +1,89 @@
+\section{NetLearner}
+
+\iffalse
+\subsection{TensorFlow 101}
+The library models the computations in machine learning as data flow graphs.
+Multidimensional data arrays are called tensors in TensorFlow.
+Nodes in the graph represent mathematical operations between tensors,
+such as add, multiply, softmax and dropout.
+Graph edges represent the flow of tensors between nodes.
+The computation graph based architecture allow researchers to run or train neural networks
+on one or more CPUs or GPUs with unified API.
+
+For general classification task, input $X$ and label $Y$ are defined as \textbf{placeholder}s
+and feed into the computation graph at running time using a dictionary.
+The graph of a typical deep learning model have three parts.
+The \textbf{inference} graph should be built so that output predictions are returned as tensor.
+For example, in the multilayer perceptron case, inference graph contains all iterative
+computation~\ref{Equ:MLPFeedForward1}-\ref{Equ:MLPFeedForward2} in the feed-forwarding steps.
+The \textbf{loss} graph should compute the loss function defined by specific models or algorithms.
+Usually it is either cross-entropy or mean-squared error averaged across the batch data.
+The loss graph will be optimized, usually minimized, by the \textbf{train} part.
+This optimization can be conducted by various optimizing algorithms, such as gradient descent,
+Momentum, RMSProp.
+After sufficient steps of batch training, we evaluate the trained model with inference
+graph and compare the predictions with the test dataset labels.
+TensorFlow also provides various useful utilities for training models and running experiments.
+Using a Saver, we are able to checkpoint the training process so as to restoring the model
+for further training or evaluation.
+Users create Summary nodes to log the snapshot of interest variables, which can be
+automatically visualized by TensorBoard.
+\fi
+
+We provide a Python library NetLearner~\cite{NetLearner} that wraps up several deep learning models on the basis of TensorFlow.
+TensorFlow~\cite{TensorFlow} is an open-source software library for machine learning
+developed by the Google Brain Team.
+NetLearner modularizes multilayer perceptron, restricted Boltzmann machine, sparse autoencoder
+and masking-noise autoencoder, all of which are used to perform the 5-class classification
+on the NSL-KDD dataset.
+
+\subsection{Hacks and Tricks}
+For the multiple layer perceptron, we tried a 4-hidden-layer network with
+very wide size in each layer, several hundreds for each layer.
+The accuracy on training set is very exiting, usually more than 96\%.
+However, its performance on test dataset is not satisfactory.
+Instead we found out that a single hidden layer with only sixteen neurons has good accuracy.
+It is trained with stochastic gradient descent (SGD) for 20 epochs and batch size 100.
+During the training, learning rate decays from 0.1 exponentially with the base of 0.32.
+We did not include regularization in the model, but did apply dropout of keep probability 0.8.
+We denote this approach as MLP and show its detailed results in the later section.
+
+We build a RBM with 200-hidden units to perform unsupervised feature learning first on the dataset.
+The learned features are then fed into a simple softmax regression classifier.
+We trained the RBM using CD1 (contrastive divergence using one full step to get the negative data),
+with batch size 10 for 40 epochs.
+The learning rate is initialized at 0.01 and decay exponentially with the base of 0.64.
+We denote this combination of RBM and softmax regression as RBM in the later section.
+
+We also implemented the self-taught learning architecture proposed in~\cite{STL-NIDS, SparseAE},
+adopting sparse autoencoder as the unsupervised feature learner.
+The learned features will then be used for classification by a Softmax regression classifier.
+We contact the author of~\cite{STL-NIDS} so that we can reproduce their implementation
+with the same hyper-parameters.
+For example, the hidden layer size of the sparse autoencoder is 64;
+the sparsity value $\rho$ is 0.25.
+Different from~\cite{STL-NIDS}, we found that using regularization in
+neither autoencoder nor softmax regression is helpful.
+So we didn't include regularization term in the both autoencoder and softmax cost function.
+The autoencoder is trained with SGD for 1000 epochs and batch size 5000.
+Different from MLP, we used Adam optimizer during the training.
+The learning rate starts at 0.01 and decay exponentially with base of 0.6.
+We denote this approach as SAE and report its performance in the later section.
+
+As a variation to the sparse autoencoder based self-taught learning architecture,
+we explore what will the performance be if we replace sparse autoencoder with denosing autoencoder.
+We simply use dropout to emulate the masking noise and build masking noise autoencoder,
+in which input is randomly masked out with keep probability of 0.4.
+The size of the denoising autoencoder is 100.
+The autoencoder is trained with SGD for 1000 epochs and batch size 5000.
+We trained denoising autoencoder in the same way as we trained sparse autoencoder.
+The result of this approach is labeled as DAE in the later section.
+
+One thing to notice is that we use the same seed to randomly initialized the weights and biases
+of the softmax regression classifier such that the learned features from RBM, sparse autoencoder and
+denoising autoencoder are comparable.
+For the same reason, all the softmax regression classifiers used by RBM, sparse autoencoder and
+denoising autoencoder are trained with Adam optimizer of batch size 100 for 100 epochs,
+with exponentially decay learning rate starting at 0.01,
+with dropout technique of keep probability 0.8.
+

@@ -1,0 +1,217 @@
+\documentclass{sig-alternate-05-2015}
+
+% *** CITATION PACKAGES ***
+\usepackage{cite}
+
+% *** MATH PACKAGES ***
+\usepackage{amsmath}
+\usepackage{svg}
+\usepackage{amsfonts}
+\usepackage{bm}
+
+% *** PDF, URL AND HYPERLINK PACKAGES ***
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{epigraph}
+
+% *** ALGORITHM ***
+%\usepackage{algorithm}
+%\usepackage{algpseudocode}
+\usepackage[ruled, linesnumbered]{algorithm2e}
+\renewcommand{\algorithmcfname}{ALGORITHM}
+\SetAlFnt{\small}
+\SetAlCapFnt{\small}
+\SetAlCapNameFnt{\small}
+\SetAlCapHSkip{0pt}
+\IncMargin{-\parindent}
+
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{float}
+
+% *** To balance reference page ***
+\usepackage[keeplastbox]{flushend}
+
+% *** Draw diagrams ***
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows.meta}
+
+% *** Fancy Table ***
+\usepackage{multirow}
+
+\newcommand{\paragraphb}[1]{\vspace{0.03in}\noindent{\bf #1} }
+\newcommand{\paragraphe}[1]{\vspace{0.03in}\noindent{\em #1} }
+\newcommand{\paragraphbe}[1]{\vspace{0.03in}\noindent{\bf \em #1} }
+
+\newcommand{\name}{DSSnet\xspace}
+\newcommand{\Name}{DSSnet\xspace}
+
+\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}
+\newdef{definition}{Definition}
+
+% *** For commenting blocks of text ***
+\begin{document}
+
+\CopyrightYear{2017} \setcopyright{acmcopyright}
+\conferenceinfo{CS 558 Spring '17,}{March 10th, 2017, Chicago.}
+\isbn{xxx-x-xxxx-xxxx-x/xx/xx}\acmPrice{\$15.00}
+\doi{http://dx.doi.org/xx.xxxx/xxxxxxxxxx.xxxxxx}
+%Authors, replace the red X's with your assigned DOI string.
+\clubpenalty=10000
+\widowpenalty = 10000
+
+%
+% --- Author Metadata here ---
+%\conferenceinfo{WOODSTOCK}{'97 El Paso, Texas USA}
+%\CopyrightYear{2007} % Allows default copyright year (20XX) to be over-ridden - IF NEED BE.
+%\crdata{0-12345-67-8/90/01}  % Allows default copyright data (0-89791-88-6/97/05) to be over-ridden - IF NEED BE.
+% --- End of Author Metadata ---
+
+\title{A Comparative Study of Deep Learning Approaches in Off-Line Network Intrusion Detection
+\titlenote{The codebase for our project is available on https://github.com/littlepretty/NetLearner}}
+
+%
+% You need the command \numberofauthors to handle the 'placement
+% and alignment' of the authors beneath the title.
+%
+% For aesthetic reasons, we recommend 'three authors at a time'
+% i.e. three 'name/affiliation blocks' be placed beneath the title.
+%
+% NOTE: You are NOT restricted in how many 'rows' of
+% "name/affiliations" may appear. We just ask that you restrict
+% the number of 'columns' to three.
+%
+% Because of the available 'opening page real-estate'
+% we ask you to refrain from putting more than six authors
+% (two rows with three columns) beneath the article title.
+% More than six makes the first-page appear very cluttered indeed.
+%
+% Use the \alignauthor commands to handle the names
+% and affiliations for an 'aesthetic maximum' of six authors.
+% Add names, affiliations, addresses for
+% the seventh etc. author(s) as the argument for the
+% \additionalauthors command.
+% These 'additional authors' will be output/set for you
+% without further effort on your part as the last section in
+% the body of your article BEFORE References or any Appendices.
+
+\numberofauthors{2} %  in this sample file, there are a *total*
+% of EIGHT authors. SIX appear on the 'first-page' (for formatting
+% reasons) and the remaining two appear in the \additionalauthors section.
+%
+
+\author{
+% You can go ahead and credit any number of authors here,
+% e.g. one 'row of three' or two rows (consisting of one row of three
+% and a second row of one, two or three).
+%
+% The command \alignauthor (no curly braces needed) should
+% precede each author name, affiliation/snail-mail address and
+% e-mail address. Additionally, tag each line of
+% affiliation/address with \affaddr, and tag the
+% e-mail address with \email.
+%
+% 1st. author
+\alignauthor
+Jiaqi Yan\\
+\affaddr{Illinois Institute of Technology}\\
+\affaddr{10 West 31st Street}\\
+\affaddr{Chicago, Illinois, 60616 }\\
+\email{jyan31@hawk.iit.edu}
+% 2nd. author
+\alignauthor
+Dong Jin\\
+\affaddr{Illinois Institute of Technology}\\
+\affaddr{10 West 31st Street}\\
+\affaddr{Chicago, Illinois, 60616 }\\
+\email{dong.jin@iit.edu}
+% 3rd. author
+%\alignauthor
+%Dong Jin\\
+%\affaddr{Illinois Institute of Technology}\\
+%\affaddr{10 West 31st Street}\\
+%\affaddr{Chicago, Illinois, 60616 }\\
+%\email{dong.jin@iit.edu}
+%\and  % use '\and' if you need 'another row' of author names
+%% 4th. author
+%\alignauthor Lawrence P. Leipuner\\
+%       \affaddr{Brookhaven Laboratories}\\
+%       \affaddr{Brookhaven National Lab}\\
+%       \affaddr{P.O. Box 5000}\\
+%       \email{lleipuner@researchlabs.org}
+%% 5th. author
+%\alignauthor Sean Fogarty\\
+%       \affaddr{NASA Ames Research Center}\\
+%       \affaddr{Moffett Field}\\
+%       \affaddr{California 94035}\\
+%       \email{fogartys@amesres.org}
+%% 6th. author
+%\alignauthor Charles Palmer\\
+%       \affaddr{Palmer Research Laboratories}\\
+%       \affaddr{8600 Datapoint Drive}\\
+%       \affaddr{San Antonio, Texas 78229}\\
+%       \email{cpalmer@prl.com}
+}
+
+
+
+\maketitle
+\begin{abstract}
+Recently, a handful of novel deep neural networks have achieved unprecedentedly
+good performance on image classification, natural language processing,
+speech recognition and many other artificial intelligence related research fields.
+In this project we investigate the possibility of applying the cutting edge
+deep learning techniques to the network intrusion detection system.
+We specifically look at a well-known public offline NSL-KDD network intrusion dataset and
+compare the performance of several popular deep neural network architectures.
+In this project, we
+\begin{itemize}
+    \item describe how we processing the NSL-KDD dataset so that
+        it can be fed to deep neural networks;
+    \item briefly introduce each deep neural network considered in this project;
+    \item implement and train multi-layer percetron, restricted Boltzmann machine,
+        sparse autoencoder and denoising autoencoder in TensorFlow;
+    \item evaluate the classification performance in terms of accuracy, precision, recall as well as F1-Score.
+\end{itemize}
+The listed achievements above will serve as the basis in conducting
+a comparative study of deep learning approaches in network intrusion detection.
+\end{abstract}
+
+%
+%  Use this command to print the description
+%
+%\printccsdesc
+
+% We no longer use \terms command
+%\terms{Theory}
+
+\keywords{Network Intrusion Detection System; Deep Learning}
+
+\input{intro}
+\input{data_processing}
+\input{architectures}
+\input{implementation}
+\input{evaluation}
+\input{conclusion}
+
+
+%
+% The following two commands are all you need in the
+% initial runs of your .tex file to
+% produce the bibliography for the citations in your paper.
+\bibliographystyle{abbrv}
+\bibliography{sigproc}  % sigproc.bib is the name of the Bibliography in this case
+% You must have a proper ".bib" file
+%  and remember to run:
+% latex bibtex latex latex
+% to resolve all references
+%
+% ACM needs 'a single self-contained file'!
+%
+
+%\nocite{*}
+%\balancecolumns % GM June 2007
+% That's all folks!
+\end{document}
