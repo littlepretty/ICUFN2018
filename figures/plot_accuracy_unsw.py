@@ -4,17 +4,20 @@ import matplotlib.pyplot as plt
 import matplotlib
 
 matplotlib.rc('font', size=18)
-machines =       ['SVM',   'MLP',   'RBM',   'SAE',   'WnD']
-train_accuracy = [93.7322, 99.4230, 94.5055, 94.7194, 99.9999]
-test_accuracy =  [81.5017, 87.3549, 86.4548, 88.0666, 90.3245]
+machines =   ['SVM',   'MLP',   'RBM',   'SAE',   'WnD']
+train_accu = [93.7322, 99.4230, 94.3947, 94.3969, 99.9999]
+test_accu =  [81.5017, 87.3549, 87.0168, 86.7393, 90.3245]
+train_std =  [0.00000, 0.00000, 0.00033, 0.00025, 0.00000]
+test_std =   [0.00000, 0.00000, 0.00731, 0.01192, 0.00000]
+
 width = 0.4
 ind = np.arange(len(machines))
 
 fig, ax = plt.subplots()
 
-rects1 = ax.bar(ind, train_accuracy, width, color='b',
+rects1 = ax.bar(ind, train_accu, width, color='b',
                 hatch='/', label='Train')
-rects2 = ax.bar(ind + width, test_accuracy, width, color='r',
+rects2 = ax.bar(ind + width, test_accu, width, color='r',
                 hatch='\\', label='Test')
 
 ax.set_ylabel('Accuracy(%)')
