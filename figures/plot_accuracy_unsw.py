@@ -4,9 +4,9 @@ import matplotlib.pyplot as plt
 import matplotlib
 
 matplotlib.rc('font', size=18)
-machines = ['SVM', 'MLP', 'RBM', 'SAE', 'WnD']
-train_accuracy = [93.7322, 99.4230, 94.5055, 94.646432, 99.0]
-test_accuracy = [81.5017, 87.3549, 86.4548, 88.95, 90.3245]
+machines =       ['SVM',   'MLP',   'RBM',   'SAE',   'WnD']
+train_accuracy = [93.7322, 99.4230, 94.5055, 94.7194, 99.9999]
+test_accuracy =  [81.5017, 87.3549, 86.4548, 88.0666, 90.3245]
 width = 0.4
 ind = np.arange(len(machines))
 
