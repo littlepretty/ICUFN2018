@@ -103,7 +103,6 @@ while the column represents the instance in a predicted class.
 It is called confusion matrix because it is useful for visualizing how a classifier
 is confusing one class with other classes.
 
-
 \subsection{Performance of Deep Learning Approaches}
 First we report the classification accuracy of each considered approach
 applied on NSL-KDD dataset in Figure~\ref{Fig:CompAccuracy}.
@@ -113,12 +112,6 @@ Sparse autoencoder based self-taught leaner achieved second best accuracy of 79.
 This number coincides with the previously reported results in~\cite{STL-NIDS} (79.10\%).
 RBM and denoising autoencoder have similar accuracy results (77.58\% and 76.93\%).
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.48\textwidth]{figures/comp_accuracy.pdf}
-    \caption{Classification Accuracy of Proposed Approaches on NSL-KDD Dataset}
-    \label{Fig:CompAccuracy}
-\end{figure}
 
 Table~\ref{Tab:ConfusionMatrixMLP} --~\ref{Tab:ConfusionMatrixDAE} summarize the confusion matrices
 of each approach and their weighted average metrics (Precision, Recall and F1-Score).
@@ -156,6 +149,13 @@ the same sizes as that of the baseline neural network,
 namely three hidden layers with sizes of [480, 512, 640].
 As the result shows, augmenting the deep neural network with wide linear regressor
 provides a 3\% increase in accuracy to the baseline three-layer neural network.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.48\textwidth]{figures/comp_accuracy_nsl.pdf}
+    \caption{Classification Accuracy of Proposed Approaches on NSL-KDD Dataset}
+    \label{Fig:CompAccuracy}
+\end{figure}
 
 \begin{figure}[h]
     \centering

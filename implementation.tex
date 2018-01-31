@@ -33,11 +33,12 @@ automatically visualized by TensorBoard.
 We provide a Python library NetLearner~\cite{NetLearner} that wraps up several deep learning models on the basis of TensorFlow.
 TensorFlow~\cite{TensorFlow} is an open-source software library for machine learning
 developed by the Google Brain Team.
-NetLearner modularizes multilayer perceptron, restricted Boltzmann machine, sparse autoencoder
-and masking-noise autoencoder, all of which are used to perform the 5-class classification
-on the NSL-KDD dataset.
+NetLearner modularizes multilayer perceptron, restricted Boltzmann machine, and autoencoders.
+We utilize NetLearner to perform the 5-class classification on the NSL-KDD dataset and 2-classification on the UNSW-NB15 dataset
 
-\subsection{Hacks and Tricks}
+\subsection{Training Support Vector Machines}
+
+\subsection{Training Multilayer Perceptron}
 For the multiple layer perceptron, we tried a 4-hidden-layer network with
 very wide size in each layer, several hundreds for each layer.
 The accuracy on training set is very exiting, usually more than 96\%.
@@ -48,12 +49,14 @@ During the training, learning rate decays from 0.1 exponentially with the base o
 We did not include regularization in the model, but did apply dropout of keep probability 0.8.
 We denote this approach as MLP and show its detailed results in the later section.
 
-We build a RBM with 200-hidden units to perform unsupervised feature learning first on the dataset.
-The learned features are then fed into a simple softmax regression classifier.
+We build a RBM with 800-hidden units to perform unsupervised learning first on the dataset.
 We trained the RBM using CD1 (contrastive divergence using one full step to get the negative data),
-with batch size 10 for 40 epochs.
+with batch size 10 for 160 epochs.
 The learning rate is initialized at 0.01 and decay exponentially with the base of 0.64.
-We denote this combination of RBM and softmax regression as RBM in the later section.
+The resulting RBM model is used to initialize the first hidden layer (800 neurons) of a multilayer perceptron (MLP)
+with an extra 480-neuron hidden layer and a softmax regression layer.
+We then focus on finetuning the MLP for 300 epochs.
+We denote this restricted Boltzmann machine initialized MLP as RBM in the later section.
 
 We also implemented the self-taught learning architecture proposed in~\cite{STL-NIDS, SparseAE},
 adopting sparse autoencoder as the unsupervised feature learner.
