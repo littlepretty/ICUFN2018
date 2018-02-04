@@ -402,31 +402,23 @@ Email: dong.jin@iit.edu}
 % As a general rule, do not put math, special symbols or citations
 % in the abstract
 \begin{abstract}
-Network intrusion detection system (NIDS) is essential to the security of any systems with communication capacity.
+Network intrusion detection system (NIDS) is essential to the security of any systems with communication capability.
 Recently a handful of novel deep neural networks bundled with more advanced and smarter
 training algorithms have achieved unprecedentedly good performance on image classification,
 natural language processing, speech recognition and many other research branches.
 Motivated by these impressive improvements in the field of artificial intelligence,
-this paper tries to answer the following questions:
-Can we transfer hall-of-fame deep learning approaches to network intrusion detection task?
-If yes, how much improvement can be expected?
-If no, what are the reasons?
-
-We answer these questions in four steps.
-Firstly, we introduce deep learning models and techniques and why they may better solve the
+this paper introduces a bunch of deep learning models to the design of NIDS
+and conducts a comparative evaluation of these models.
+Firstly, we introduce general deep learning methodology and its potential implication on the
 network intrusion detection problem.
 %Besides, we also survey and discuss the status quo of available network intrusion detection datasets
 %and its implication on applying deep learning models to network intrusion detection.
-Then we briefly review the existing machine learning solutions to network intrusion detection,
-some of which provide the state-of-the-art detection performance.
-After that, we describe several groups of the cutting-edge deep learning models
-in concisely mathematical languages.
-We conduct a quantitatively comparative study of each of them with two off-line network intrusion detection datasets,
-with the help of our own TensorFlow-based deep learning library, NetLeaner.
-Apart from making NetLearner publicly available, we also share the hacks and tricks
-used during the training phase so that future researchers can easily reproduce and extend our work.
-%[To the best of our knowledge, our feed-forward neural network achieves the best 5-classification
-%result, with accuracy of 81.42\% and F1-Score of 80.44\%.]
+Then we briefly review the existing machine learning solutions to two network intrusion detection tasks, namely the NSL-KDD dataset and the UNSW-NB15 dataset.
+After describing a set of cutting-edge deep learning models in concisely mathematical languages,
+we conduct a quantitatively comparative evaluation of each of them under the help of
+our own TensorFlow-based deep learning library, NetLeaner.
+%Apart from making NetLearner publicly available, we also share the hacks and tricks
+%used during the training phase so that future researchers can easily reproduce and extend our work.
 \end{abstract}
 
 % no keywords
@@ -447,8 +439,8 @@ used during the training phase so that future researchers can easily reproduce a
 \input{intro}
 \input{background}
 \input{existing_works}
+\input{datasets}
 \input{architectures}
-\input{implementation}
 \input{evaluation}
 \input{conclusion}
 \input{acknowledgement}
