@@ -29,7 +29,7 @@ rects2 = ax.bar(ind + width, test_accu, width, yerr=test_std, color='r',
                 hatch='\\', label='Test')
 ax.set_ylabel('Accuracy(%)')
 ax.set_xlabel('Classifiers')
-ax.set_xticks(ind + width / 2)
+ax.set_xticks(ind + width)
 ax.set_xticklabels(machines)
 ax.set_xlim([-0.5, len(machines)])
 ax.set_ylim([65, 100])

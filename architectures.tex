@@ -370,6 +370,14 @@ In summary, the Wide and Deep model actually complements a deep neural network
 with embedded low-dimension input vectors for good generalization;
 Its linear sub-model, as shown in Figure~\ref{Fig:WideDeepModel}, is integrated with the deep neural network using a weighted sum of each model's output for good memorization.
 
+The wide and deep learning model requires engineering the raw attributes in dataset into basis, crossed, continuous, and embedded components.
+In our implementation, the basis features are all the raw symbolic and integer attributes.
+Crossed features are built by a subset of combinations of the symbolic attributes in a dataset.
+The raw symbolic and integer attributes are fed to the deep neural network as embedded components after conducting embedding.
+The continuous components are straitforwardly the raw continuous attributes.
+To compare with previous proposed models, we set the structure of the deep neural network in the wide and deep model to be
+the same sizes as that of the baseline MLP, namely two hidden layers with size of [800 480].
+
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.45\textwidth]{figures/dloss_hist.png}

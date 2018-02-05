@@ -1,11 +1,7 @@
 \section{Experiment Results}
 
-We now evaluate the NetLearner-implemented model on the 5-class the NSL-KDD task as well as
-on the 2-class UNSW-NB15 task.
-
-\subsection{Evaluation Metrics}
-We evaluate the classification performance of our proposed deep learning approaches
-with the following metrics.
+We now evaluate the NetLearner-implemented model on the 5-class NSL-KDD task,
+as well as on the 2-class UNSW-NB15 task, using the following metrics.
 \begin{itemize}
     \item \textbf{Accuracy} is the percentage of correctly classified connections
         over the total number of connections in the dataset:
@@ -18,7 +14,7 @@ with the following metrics.
         In NSL-KDD dataset, the number of available U2R records (67)
         is in two degrees of magnitude less than the other classes of traffic
         (9711, 7458, 2887, 2121 respectively).
-        Therefore we also consider the following metrics.
+        Therefore we also consider the precision and recall.
     \item \textbf{Precision} is the percentage of the correctly classified positives over
         the total number of positives predicted by the classifier:
                 \begin{align}
@@ -35,69 +31,36 @@ with the following metrics.
                     F = \frac{2PR}{P + R}
                 \end{align}
 \end{itemize}
-In the 5-class classification, we calculate the precision, recall and F1-Score for each traffic class.
-Additionally, we report the weighted average of these metrics as a single value for comparing various approaches.
-The weight for each class is determined by its proportion in the test dataset.
-The weight vector for class [Normal, Probe, DoS, U2R, R2L] is [0.431, 0.107, 0.339, 0.018, 0.105].
-Besides, we also provide the confusion matrix of the classification results when applying
-different approaches on the test dataset.
-In our confusion matrix table, the row represents the instance in an actual class,
-while the column represents the instance in a predicted class.
+%In the 5-class classification, we calculate the precision, recall and F1-Score for each traffic class.
+%Additionally, we report the weighted average of these metrics as a single value for comparing various approaches.
+%The weight for each class is determined by its proportion in the test dataset.
+%The weight vector for class [Normal, Probe, DoS, U2R, R2L] is [0.431, 0.107, 0.339, 0.018, 0.105].
+
+Besides, we also calculate the confusion matrices of the classification results when applying
+different approaches on both task's test datasets.
+In a confusion matrix table, the $i$th row represents the instances of class $i$,
+while the $j$th column represents the instances predicted by the classifier as class $j$.
 It is called confusion matrix because it is useful for visualizing how a classifier
 is confusing one class with other classes.
+Due to page space limit, here we only present the most straightforward
+and relatively more important metric accuracy.
+Statistics regarding precision, recall and confusion matrices can be found
+in our detailed technical report~\cite{OurWonReport} and our codebase~\cite{NetLearner}.
 
-\subsection{Performance of Deep Learning Approaches}
-First we report the classification accuracy of each considered approach
-applied on NSL-KDD dataset in Figure~\ref{Fig:CompAccuracy}.
+For comparison, we train a SVM using~\cite{ScikitLearnSVM} and report its accuracy along
+with multilayer perceptron (MLP), finetuned restricted Boltzmann machine (RBM),
+finetuned sparse autoencoder (SAE) and wide and deep combined model (WnD).
+Since the weights in neural networks are usually initialized randomly, we repeat forty
+runs (training and testing) for each model and plot the mean accuracies and their standard deviation.
+The training and testing results for 5-class NSL-KDD task and 2-class UNSW-NB15 task are
+shown in Figure~\ref{Fig:CompAccuracyNSL} and Figure~\ref{Fig:CompAccuracyUNSW} respectively.
 
-Surprisingly, the most ``accurate" approach is the simple 16-neuron perceptron (81.42\%).
-Sparse autoencoder based self-taught leaner achieved second best accuracy of 79.15\%.
-This number coincides with the previously reported results in~\cite{STL-NIDS} (79.10\%).
-RBM and denoising autoencoder have similar accuracy results (77.58\% and 76.93\%).
-
-
-Table~\ref{Tab:ConfusionMatrixMLP} --~\ref{Tab:ConfusionMatrixDAE} summarize the confusion matrices
-of each approach and their weighted average metrics (Precision, Recall and F1-Score).
-Apart from best accuracy, MLP also achieved the best F1-Score (80.44\%)
-among all of the considered approaches.
-However, we can see that for U2R attacks, MLP still has very poor results of
-both precision (13.95\%) and recall (10.35\%).
-The second highest F1-Score is achieved by sparse autoencoder combined with softmax regression (78.05\%).
-This value is actually a little bit higher than the result (75.76\%) reported in~\cite{STL-NIDS}.
-We believe this is partly due to the reason that we did not introduce regularization
-for both sparse autoencoder and softmax regression classifier,
-and partly due to the dropout technique we used in training the softmax regression classifier.
-RBM and DAE again achieve very similar classification performance,
-with F1-Score of 75.63\% and 75.65\% respectively.
-Considering both the high accuracy and best F1-Score, we conclude that in the competition of
-5-class classification, MLP is the winner.
-
-Confusion matrices here tell us something interesting about the classification performance
-for each type of traffics.
-MLP correctly recognized the most number of normal traffics (9329 out of 9711).
-For the attacking traffics, the winner classifier MLP correctly predicted the most
-number of DoS attacks (6146 out of 7636), U2R attacks (41 out of 396)
-and R2L attacks (926 out of 2376).
-RBM is the best classifier in predicting Probe attacks (2015 out of 2425).
-
-The wide and deep learning model, as stated in Section~\ref{SubSec:WD},
-(WnD) requires us engineering the features of UNSW dataset into
-basis, crossed, continuous, indicator and embedded components.
-The basis features are all the raw symbolic and integer features.
-These basis features are also fed to the deep model after conducting the embedding step.
-The continuous features are all the raw continuous features.
-We make the full combinations of symbolic features to be crossed features.
-For comparison reason, we set the structure of the deep neural network in WnD to be
-the same sizes as that of the baseline neural network,
-namely three hidden layers with sizes of [480, 512, 640].
-As the result shows, augmenting the deep neural network with wide linear regressor
-provides a 3\% increase in accuracy to the baseline three-layer neural network.
 
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.48\textwidth]{figures/comp_accuracy_nsl.pdf}
     \caption{Classification Accuracy of Proposed Approaches on NSL-KDD Dataset}
-    \label{Fig:CompAccuracy}
+    \label{Fig:CompAccuracyNSL}
 \end{figure}
 
 \begin{figure}[h]
@@ -107,118 +70,3 @@ provides a 3\% increase in accuracy to the baseline three-layer neural network.
     \label{Fig:CompAccuracyUNSW}
 \end{figure}
 
-\iffalse
-\begin{table}[t]
-    \caption{Confusion Matrix of MLP on Test Dataset}
-    \centering
-    \begin{tabular}{cc|rrrrr}
-        \hline
-        &  & \multicolumn{5}{c}{Prediction} \\
-                        &        & Normal & Probe & DoS & U2R & R2L\\
-        \hline
-        \hline
-        \multirow{5}{*}{Actual} & Normal & {\color{red}9329} &  230 &   70 &  25 &  57 \\
-                                &  Probe &  164 & 1914 &  271 &  10 &  66 \\
-                                &  DoS   & 1358 &   82 & {\color{red}6146} &  47 &   3 \\
-                                &  U2R   &  345 &    4 &    0 &  {\color{red}41} &   6 \\
-                                &  R2L   & 1247 &   30 &    2 & 171 & {\color{red}926} \\
-        \hline
-        \multicolumn{2}{c|}{Precision(\%)}   & 74.97 & 84.69 & 94.71 & 13.95 & 87.52\\
-        \multicolumn{2}{c|}{Wtd. Avg.(\%)}   & \multicolumn{5}{r}{82.96}\\
-        \hline
-        \multicolumn{2}{c|}{Recall(\%)}      & 96.07 & 78.93 & 80.49 & 10.35 & 38.97\\
-        \multicolumn{2}{c|}{Wtd. Avg.(\%)}   & \multicolumn{5}{r}{81.42}\\
-        \hline
-        \multicolumn{2}{c|}{F1-Score(\%)}    & 84.22 & 81.71 & 87.02 & 11.88 & 53.93\\
-        \multicolumn{2}{c|}{Wtd. Avg.(\%)}   & \multicolumn{5}{r}{\textbf{\color{red}80.44}}\\
-        \hline
-    \end{tabular}
-    \label{Tab:ConfusionMatrixMLP}
-\end{table}
-
-
-\begin{table}[t]
-    \caption{Confusion Matrix of RBM on Test Dataset}
-    \centering
-    \begin{tabular}{cc|rrrrr}
-        \hline
-        &  & \multicolumn{5}{c}{Prediction} \\
-                        &        & Normal & Probe & DoS & U2R & R2L\\
-        \hline
-        \hline
-        \multirow{5}{*}{Actual} & Normal & 8903 &  318 &  428 &  11 &   51 \\
-                                & Probe  &  232 & {\color{red}2015} &  159 &   2 &   17 \\
-                                & DoS    & 1879 &  143 & 5613 &   0 &    1 \\
-                                & U2R    &  356 &    3 &    1 &  27 &    9 \\
-                                & R2L    & 1550 &    8 &    1 &   8 &  809 \\
-        \hline
-        \multicolumn{2}{c|}{Precision(\%)}   & 68.91& 81.02& 90.50& 56.25& 91.21\\
-        \multicolumn{2}{c|}{Wtd. Avg.(\%)}   & \multicolumn{5}{r}{79.65}\\
-        \hline
-        \multicolumn{2}{c|}{Recall(\%)}      & 91.68& 83.09& 73.51&  6.82& 34.05\\
-        \multicolumn{2}{c|}{Wtd. Avg.(\%)}   & \multicolumn{5}{r}{77.04}\\
-        \hline
-        \multicolumn{2}{c|}{F1-Score(\%)}    & 78.68& 82.04& 81.12& 12.16& 49.59\\
-        \multicolumn{2}{c|}{Wtd. Avg.(\%)}   & \multicolumn{5}{r}{75.63}\\
-        \hline
-    \end{tabular}
-    \label{Tab:ConfusionMatrixRBM}
-\end{table}
-
-\begin{table}[t]
-    \caption{Confusion Matrix of SAE on Test Dataset}
-    \centering
-    \begin{tabular}{cc|rrrrr}
-        \hline
-        &  & \multicolumn{5}{c}{Prediction} \\
-                        &        & Normal & Probe & DoS & U2R  & R2L\\
-        \hline
-        \hline
-        \multirow{5}{*}{Actual}  & Normal & 8864 &  696 &   92 &   11 &   48 \\
-                                 & Probe  &  179 & 2001 &  164 &    2 &   79 \\
-                                 & DoS    & 1542 &   39 & 6054 &    0 &    1 \\
-                                 & U2R    &  357 &    1 &    1 &   30 &    7 \\
-                                 & R2L    & 1444 &    6 &    5 &   26 &  895 \\
-        \hline
-        \multicolumn{2}{c|}{Precision(\%)}    & 71.56& 72.95& 95.85& 43.48& 86.89\\
-        \multicolumn{2}{c|}{Wtd. Avg.(\%)}    & \multicolumn{5}{r}{81.06}\\
-        \hline
-        \multicolumn{2}{c|}{Recall(\%)}       & 91.28& 82.52& 79.28&  7.58& 37.67\\
-        \multicolumn{2}{c|}{Wtd. Avg.(\%)}    & \multicolumn{5}{r}{79.15}\\
-        \hline
-        \multicolumn{2}{c|}{F1-Score(\%)}     & 80.23& 77.44& 86.78& 12.90& 52.55\\
-        \multicolumn{2}{c|}{Wtd. Avg.(\%)}    & \multicolumn{5}{r}{78.05}\\
-        \hline
-    \end{tabular}
-    \label{Tab:ConfusionMatrixSAE}
-\end{table}
-
-
-\begin{table}[t]
-    \caption{Confusion Matrix of DAE on Test Dataset}
-    \centering
-    \begin{tabular}{cc|rrrrr}
-        \hline
-        &  & \multicolumn{5}{c}{Prediction} \\
-                        &        & Normal & Probe & DoS & U2R & R2L\\
-        \hline
-        \hline
-        \multirow{5}{*}{Actual} & Normal & 9249 &  319 &   85 &  10 &  48 \\
-                                & Probe  & 576  & 1504 &  226 &   2 & 117 \\
-                                & DoS    & 1842 &  128 & 5665 &   0 &   1 \\
-                                & U2R    & 353  &    1 &    0 &  38 &   4 \\
-                                & R2L    & 1469 &    3 &    1 &  17 & 886 \\
-        \hline
-        \multicolumn{2}{c|}{Precision(\%)} & 68.57& 76.93& 94.78& 56.72& 83.90\\
-        \multicolumn{2}{c|}{Wtd. Avg.(\%)} & \multicolumn{5}{r}{79.75}\\
-        \hline
-        \multicolumn{2}{c|}{Recall(\%)}    & 95.24& 62.02& 74.19&  9.60& 37.29\\
-        \multicolumn{2}{c|}{Wtd. Avg.(\%)} & \multicolumn{5}{r}{76.93}\\
-        \hline
-        \multicolumn{2}{c|}{F1-Score(\%)}  & 79.73& 68.68& 83.23& 16.41& 51.63\\
-        \multicolumn{2}{c|}{Wtd. Avg.(\%)} & \multicolumn{5}{r}{75.65}\\
-        \hline
-    \end{tabular}
-    \label{Tab:ConfusionMatrixDAE}
-\end{table}
-\fi
