@@ -13,7 +13,7 @@ def autolabel(rects):
         ax.text(rect.get_x() + rect.get_width() / 2., 1.005 * height,
                 '%.1f' % height, ha='center', va='bottom')
 
-matplotlib.rc('font', size=18)
+matplotlib.rc('font', size=20)
 machines =       ['SVM',   'MLP',   'RBM',   'SAE',   'WnD']
 train_accuracy = [99.2077, 99.3966, 99.4912, 99.3449, 99.7261]
 test_accuracy =  [78.5353, 78.3521, 78.8347, 79.1519, 78.9567]
@@ -23,9 +23,11 @@ test_std =       [0.00000, 0.5162,  0.3499,  0.4215,  0.0813]
 width = 0.4
 ind = np.arange(0, len(machines))
 fig, ax = plt.subplots()
-rects1 = ax.bar(ind, train_accuracy, width, yerr=train_std, color='b',
+rects1 = ax.bar(ind, train_accuracy, width, yerr=train_std,
+                color='b', error_kw=dict(ecolor='g'),
                 hatch='/', label='Train')
-rects2 = ax.bar(ind + width, test_accuracy, width, yerr=test_std, color='r',
+rects2 = ax.bar(ind + width, test_accuracy, width, yerr=test_std,
+                color='r', error_kw=dict(ecolor='g'),
                 hatch='\\', label='Test')
 ax.set_ylabel('Accuracy(%)')
 ax.set_xlabel('Classifiers')

@@ -51,10 +51,35 @@ For comparison, we train a SVM using~\cite{ScikitLearnSVM} and report its accura
 with multilayer perceptron (MLP), finetuned restricted Boltzmann machine (RBM),
 finetuned sparse autoencoder (SAE) and wide and deep combined model (WnD).
 Since the weights in neural networks are usually initialized randomly, we repeat forty
-runs (training and testing) for each model and plot the mean accuracies and their standard deviation.
+runs (training and testing) for each model and plot the average accuracies as well as the standard deviation.
 The training and testing results for 5-class NSL-KDD task and 2-class UNSW-NB15 task are
 shown in Figure~\ref{Fig:CompAccuracyNSL} and Figure~\ref{Fig:CompAccuracyUNSW} respectively.
 
+For the NSL-KDD task, all classifiers have achieved very high training accuracy (no less than 99\%).
+However, none of the classifiers do a great job on the testing data;
+there is a gap between training accuracy and testing accuracy (as low as 78.4\%).
+As the representative of the classic machine learning approach, SVM achieves a 78.5\% accuracy
+comparable to the deep learning models.
+Our SAE achieves similar accuracy performance to~\cite{STL-NIDS}, which is
+also the best among all the considered models (79.2\%).
+RBM, SAE and WnD all outperform MLP for two different reasons.
+Both RBM and SAE provide their underlying MLP with an better initial weights in the first layer
+than randomly generated numbers.
+WnD, on the other hand, have a slight higher accuracy because of the extra linear model.
+
+For the UNSW-NB15 we see similar phenomenon: the average accuracies of RBM, SAE and WnD are
+all higher than MLP, for the same reason stated previously.
+We notice WnD has significantly improved MLP's performance by around 3\%.
+Different from NSL-KDD task, the training accuracies of all the approaches are mediocre,
+with maximum at 94.4\%, in contrast to NSL-KDD case where everyone has higher than 99\% training accuracy.
+The lower UNSW-NB15 training accuracies, we believe, are mostly because its training dataset
+is more difficult than NSL-KDD training dataset.
+Harder training dataset is probably one of the reasons that testing accuracies for UNSW-NB15 task
+are commonly higher than the testing accuracies for NSL-KDD task,
+since classifier only have access to training dataset.
+In this situation, even though SVM has similar training accuracy to neural networks (93\% vs 94\%),
+its testing accuracy falls far behind by 6.5\% to 8.8\%,
+showing the superior generalization capability of deep neural network models.
 
 \begin{figure}[h]
     \centering
