@@ -26,12 +26,8 @@ as well as on the 2-class UNSW-NB15 task, using the following metrics.
                     R = \frac{\text{True Positives}}{\text{True Positives} + \text{False Negatives}}
                 \end{align}
 \end{itemize}
-For the 5-class NSL-KDD classification task, we adopt the approach in~\cite{STL-NIDS},
-which calculate the weighted precision, recall for each traffic class such that models
-can be compared with single metric.
-The weight for each class is determined by its proportion in the test dataset,
-namely [0.431, 0.107, 0.339, 0.018, 0.105] for class [Normal, Probe, DoS, U2R, R2L] respectively.
-
+%The weight for each class is determined by its proportion in the test dataset,
+%namely [0.431, 0.107, 0.339, 0.018, 0.105] for class [Normal, Probe, DoS, U2R, R2L] respectively.
 %Besides, we also calculate the confusion matrices of the classification results when applying
 %different approaches on both task's test datasets.
 %In a confusion matrix table, the $i$th row represents the instances of class $i$,
@@ -43,9 +39,9 @@ namely [0.431, 0.107, 0.339, 0.018, 0.105] for class [Normal, Probe, DoS, U2R, R
 %Statistics regarding precision, recall and confusion matrices can be found
 %in our detailed technical report~\cite{OurWonReport} and our codebase~\cite{NetLearner}.
 
-For comparison, we train a SVM using~\cite{ScikitLearnSVM} and report its accuracy along
-with multilayer perceptron (MLP), finetuned restricted Boltzmann machine (RBM),
-finetuned sparse autoencoder (SAE) and wide and deep combined model (WnD).
+For comparison, we train a RBF-kernel SVM using~\cite{ScikitLearnSVM} and report its accuracy along
+with multilayer perceptron (MLP), restricted Boltzmann machine finetuned neural network (RBM),
+sparse autoencoder finetuned neural network (SAE) and wide linear classifier and deep neural network combined model (WnD).
 
 Before training machine learning models, research need to take a great effort to search
 the optimal hyper-parameters that fit both problem domain and model.
@@ -57,8 +53,14 @@ for each models.
 At last, we train the model for $T$ epochs and report the metrics on the testing dataset,
 which is never touched during training phase.
 In this way, we have fixed the complexity of the compared models.
-The testing results for 5-class NSL-KDD task and 2-class UNSW-NB15 task are
+The accuracies of each classifier on test datasets for both tasks are
 shown in Figure~\ref{Fig:CompAccuracyNSL} and Figure~\ref{Fig:CompAccuracyUNSW} respectively.
+In the 2-class UNSW-NB15 dataset,
+the amount of normal and attacking traffic are nearly balanced (37,000 normal v.s. 45,332 attacking records).
+Therefore we only report the precision and recall for the attacking traffic in Figure~\ref{Fig:CompAccuracyUNSW}.
+For the 5-class NSL-KDD task, we adopt the approach in~\cite{STL-NIDS}
+to calculate the weighted precisions and recalls and plot them along with accuracy in Figure~\ref{Fig:CompAccuracyNSL}.
+The per-class precisions and recalls are also separately listed in Table~\ref{Tab:PrecisionRecall}.
 
 For the NSL-KDD task, all classifiers have achieved very high training accuracy (no less than 99\%, not reported in figures).
 However, none of the classifiers do a great job on the testing data;
@@ -82,7 +84,7 @@ is more difficult than NSL-KDD training dataset.
 Harder training dataset is probably one of the reasons that testing accuracies for UNSW-NB15 task
 are commonly higher than the testing accuracies for NSL-KDD task,
 since classifier only have access to training dataset.
-In this situation, even though SVM has similar training accuracy to neural networks (93\% vs 94\%),
+In this situation, even though SVM has similar training accuracy to neural networks (93\% v.s. 94\%),
 its testing accuracy falls far behind by 5\% (comparing to MLP) to 9\% (comparing to WnD),
 showing the superior generalization capability of deep neural network models.
 

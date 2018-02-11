@@ -15,9 +15,9 @@ def autolabel(rects):
 
 matplotlib.rc('font', size=20)
 machines =   ['SVM',   'MLP',   'RBM',   'SAE',   'WnD']
-accuracy =   [81.5041, 86.8216, 87.1252, 88.0666, 91.1513]
-precision =  [81.5000, 88.8800, 88.6200, 89.2700, 92.4562]
-recall    =  [80.5000, 86.8200, 87.1300, 88.0700, 90.9821]
+accuracy =   [81.5041, 86.6941, 87.1252, 88.2475, 91.1513]
+precision =  [75.0600, 81.2000, 82.1900, 83.1400, 85.6900]
+recall    =  [99.4600, 98.9800, 97.8100, 98.6700, 99.3800]
 # train_accu = [93.6306, 94.3630, 94.3947, 94.3969, 93.5365]
 # train_std =  [0.00000, 0.23000, 0.00033, 0.00025, 2.28320]
 # test_std =   [0.00000, 1.01820, 0.00731, 0.01192, 3.17770]
@@ -26,17 +26,17 @@ width = 0.93
 ind = np.arange(0, len(machines) * 3, 3)
 fig, ax = plt.subplots()
 rects1 = ax.bar(ind, accuracy, width, color='r', hatch='/', label='Accuracy')
-rects2 = ax.bar(ind + width, precision, width, color='b', alpha=0.4,
+rects2 = ax.bar(ind + width, precision, width, color='b',
                 hatch='\\', label='Precision')
 rects3 = ax.bar(ind + 2 * width, recall, width, color='g',
-                hatch='-', label='Recall')
+                hatch='//', label='Recall')
 
 ax.set_ylabel('Testset Performance(%)')
 ax.set_xlabel('Classifiers')
 ax.set_xticks(ind + width)
 ax.set_xticklabels(machines)
 ax.set_xlim([-1.5, len(machines) * 3])
-ax.set_ylim([60, 95])
+ax.set_ylim([60, 105])
 plt.grid(linestyle=':')
 plt.legend(loc='lower right')
 autolabel(rects1)

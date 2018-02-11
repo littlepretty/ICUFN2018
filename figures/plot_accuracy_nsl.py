@@ -26,10 +26,10 @@ width = 0.93
 ind = np.arange(0, len(machines) * 3, 3)
 fig, ax = plt.subplots()
 rects1 = ax.bar(ind, accuracy, width, color='r', hatch='/', label='Accuracy')
-rects2 = ax.bar(ind + width, precision, width, color='g',
+rects2 = ax.bar(ind + width, precision, width, color='b',
                 hatch='\\', label='Precision')
-rects3 = ax.bar(ind + 2 * width, recall, width, color='b',
-                hatch='-', label='Recall')
+rects3 = ax.bar(ind + 2 * width, recall, width, color='g',
+                hatch='//', label='Recall')
 
 ax.set_ylabel('Testset Performance(%)')
 ax.set_xlabel('Classifiers')
