@@ -1,79 +1,61 @@
 \section{Deep Learning Background}
-We identify three main reasons why deep learning succeed in many areas related
-to artificial intelligence, as well as their implications on network intrusion detection problem.
+We identify three main reasons why deep learning succeeds in many areas related
+to artificial intelligence, as well as their implications for network intrusion detection.
 
-\subsection{Learning/Training Techniques}
-In the supervise learning framework, given the feature representations and inference model,
-learning is in essential an optimization problem which minimizes a predefined loss function
+In the supervise learning framework, given the feature representations and inference models,
+learning is an optimization process which minimizes a predefined loss function
 over given training examples.
 The most commonly used optimization algorithm is back-propagation(BP)~\cite{Backpropagation} with gradient descent,
-because computing gradient is Hessian-free and memoization saves a great amount of computation when
+because computing gradient is Hessian-free and memorization saves a significant amount of computation when
 propagating backward level by level.
 However, it is impossible to train deep neural networks and achieve optimal parameters only with BP.
-The first problem is that usually the cost function is non-convex with a lot of local minima;
+The first problem is that the cost function is usually non-convex;
 optimizing algorithms using only first-order gradient is likely to be stuck at a poor local minimum.
-Secondly, exploding and vanishing gradient makes back-propagation difficult to train models with many layers stacked together,
-such as recurrent neural networks and stacked Restricted Boltzmann Machines.
+Secondly, exploding and vanishing gradient makes back-propagation difficult to train models with many layers stacked together, such as recurrent neural networks and stacked Restricted Boltzmann Machines.
 Even if we can tolerate the long training time and carefully deal with gradient exploding and vanishing,
 the trained model is usually over-fitted to the training dataset, and not able to generalize well to the testing or future dataset.
 
-The emergence of many novel learning algorithms and training techniques makes training deep
-neural network and achieving good suboptimal minimum possible.
-For example, stochastic gradient descent (SGD) with mini-batches can greatly increase the training speed comparing
+The emergence of many novel learning algorithms and training techniques enables us to train deep
+neural networks to achieve good suboptimal minimum.
+For example, stochastic gradient descent (SGD) with mini-batches can significantly increase the training speed comparing
 to normal gradient descent on the entire dataset.
 In each step of gradient descent, researchers have shown that momentum~\cite{Momentum} can
 prevent SGD from oscillating across but pushing along the shallow ravine.
-Along with decaying learning rate, momentum-based optimization algorithms, for example Adam~\cite{Adam},
-usually help us find better local minimum.
-To prevent over-fitting, researchers have proposed dropout~\cite{Dropout} to average over
-exponential number of neural networks.
+Along with decaying learning rate, momentum-based optimization algorithms (e.g., Adam~\cite{Adam}) often find a better local minimum.
+To prevent over-fitting, researchers have proposed dropout~\cite{Dropout} to average over an exponential number of neural networks.
 These learning algorithms and training techniques will directly help neural networks achieve
 better performance for the network intrusion detection problem,
 since they are general to any types of neural network models.
 
-
-\subsection{Unsupervised Generative Models}
 Another breakthrough in the deep learning area is that researchers have successfully trained
-a number of unsupervised generative models that attracted much attentions.
-Different from supervised models (or discriminative models) that tries to discover
-the relationship between input variables and target label (or the conditional probability distribution of the targets given the input),
-these models aims to learn the joint probability distribution, or joint conditional distribution,
+a number of useful unsupervised generative models.
+Different from supervised models (or discriminative models) that aim to discover
+the relationship between input variables and target labels (or the conditional probability distribution of the targets given the inputs),
+these models aim to learn the joint probability distribution or the joint conditional distribution,
 of \textbf{all} variables for a phenomenon from the given dataset.
 The resulting generative model is powerful in many ways.
-First, given the well trained probability distribution, the model can synthesize meaningful data
-comparable to real examples in training set.
-For example, Auxiliary-Classifier Generative Adversarial Nets (AC-GAN)~\cite{AC-GAN} can generate very high quality
-images after training on ImageNet dataset~\cite{ImageNet};
-both stacked denoising autoencoder~\cite{DenoiseAE} and deep brief nets~\cite{DeepBeliefNets} can synthesize
-handwritten digits after learning from the MNIST dataset.
-Besides, the ability to generate meaningful and high quality faked data actually means that
-the model have learned better feature representations from the unlabeled data itself.
-As an example, it is shown that the features extracted from the hidden units of sparse autoencoder
+First, given the well-trained probability distribution, the model can synthesize meaningful data
+comparable to real examples in the training set.
+For example, Auxiliary-Classifier Generative Adversarial Nets (AC-GAN)~\cite{AC-GAN} can generate  high-quality images after training on ImageNet dataset~\cite{ImageNet};
+both stacked denoising autoencoder~\cite{DenoiseAE} and deep brief nets~\cite{DeepBeliefNets} can synthesize handwritten digits after learning from the MNIST dataset.
+Second, the ability to generate high quality faked data indicates that
+the model has learned better feature representations from the unlabeled data.
+For example, the features extracted from the hidden units of sparse autoencoder
 can significantly improve the performance of support vector classifier~\cite{SparseAE}.
-At last, researchers have shown that it is usually a good strategy to initialize deep neural networks
-with the weights from a successfully trained generative model~\cite{DeepBeliefNets, Momentum}.
+Additionally, researchers have shown that it is usually an excellent strategy to initialize deep neural networks with the weights from a successfully trained generative model~\cite{DeepBeliefNets, Momentum}.
 
-In the area of network security, the amount of network traffic data is enormously large,
-usually in the order of terabytes per day in a large monitored network.
-In practice, the amount of data is impossible for a human security analyst or
-a group of them to review, e.g., to find patterns and label anomalies.
-This situation makes an unsupervised generative model a promisingly good solution
-to traffic classification since it can be trained unsupervised:
-\begin{itemize}
-    \item It utilizes the large amount of unlabeled data to learning useful and hierarchical features
-        from the traffic data itself;
-    \item It is equivalently a good way to initialize the weights of the hidden layers
-        in a deep neural network, which can be further fine-tuned to be a high performance classifier.
-\end{itemize}
-In this project we investigate and try three types of generative models:
-restricted Boltzmann machine, autoencoders and generative adversarial nets.
-See section~\ref{Sec:Architectures} for details.
+In the area of network intrusion detection, the amount of network traffic data is massive,
+%e.g., in the order of terabytes per day in a large monitored network. In practice, the amount of data is 
+which makes impossible for security analysts to find malicious patterns and label anomalies.
+This situation makes an unsupervised generative model a promising solution
+to traffic classification. %since it can be trained unsupervised:
+First, it utilizes the vast amount of unlabeled data to learning useful and hierarchical features. Second, it effectively initializes the weights of the hidden layers in a deep neural network, which allows further fine-tuning towards a high-performance classifier.
+In this paper, we investigate three types of generative models, i.e.,
+restricted Boltzmann machine, autoencoders and generative adversarial nets (see section~\ref{Sec:Architectures}). 
+We also list the dimension and amount of the NIDS training datasets that we used in this paper alongside with those famous image classification datasets in Table~\ref{Tab:Datasets}.
 
-\subsection{Datasets}
-Apart from the sophisticated and efficient learning algorithms,
-abundant open data in the domain of image classification, natural language processing, machine translation, etc.
-actually drives the novel and complex neural network models and make them successful.
-Table~\ref{Tab:Datasets} lists the dimension and amount of the training dataset for various image classification tasks.
+%In addition to the sophisticated and efficient learning algorithms, abundant open data in the domain of image classification, natural language processing, or machine translation actually drive the novel and complex neural network models and make them successful.
+%Table~\ref{Tab:Datasets} lists the dimension and amount of the training dataset for various image classification tasks.
 
 \iffalse
 The most vivid example would be how ImageNet dataset~\cite{ImageNet} pushed a series of deep learning models,
@@ -106,7 +88,7 @@ One year later, residual block based ResNet~\cite{ResNet} pushed the error rate 
                                                      & Tiny          & 80 million    & 3072    \\
                                                      & ImageNet      & 1.2 million   & 196,608 \\
 \hline
-\multicolumn{1}{c|}{\multirow{2}{*}{IDS}}            & UNSW-NB15     & 175,341       & 42      \\
+\multicolumn{1}{c|}{\multirow{2}{*}{NIDS}}            & UNSW-NB15     & 175,341       & 42      \\
 \multicolumn{1}{l|}{}                                & NSL-KDD       & 125,973       & 41      
 \end{tabular}
 \end{table}

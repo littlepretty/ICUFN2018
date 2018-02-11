@@ -9,6 +9,21 @@ NetLearner implements these deep learning models on the basis of TensorFlow.\foo
 
 \subsection{Multilayer Perceptron}
 \label{SubSec:MLP}
+Multilayer perceptron (MLP) is a fully connected feed-forward neural network with multiple hidden layers.
+Each layer is consists of non-linear neural units.
+By introducing non-linear neural units (perceptrons), it can distinguish data that are
+not linearly separable.
+However, the non-linearity make it very hard to train a deep MLP of more than three layers,
+even if people have proposed the efficient back-propagation learning algorithm~\cite{Backpropagation}.
+Recently it revived due to the various new training techniques designed by deep learning community,
+including Stochastic Gradient Descent (SGD), Adam optimizer~\cite{Adam},
+batch normalization~\cite{BatchNorm} and Dropout~\cite{Dropout}.
+Except for the number of neurons in each layer and number of layers,
+MPL can also be tuned with different activation functions, or neural types.
+The most popular two, which are used in this project, are logistic function
+and rectifier linear unit.
+
+\iffalse
 Multilayer perceptron (MLP) is a classic deep learning classifier with simple
 design of the connectivity between neurons.
 It is a fully connected feed-forward neural network, as shown in Figure~\ref{Fig:MLPArchitecture}.
@@ -54,6 +69,7 @@ the feed-forward step of the perceptron network.
         Figure courtesy of Teijiro Isokawa, Haruhiko Nishimura and Nobuyuki Matsui.}
     \label{Fig:MLPArchitecture}
 \end{figure}
+\fi
 
 We build two dual-hidden-layer MLP, with 800 neurons in first layer,
 and 480 neurons in the second layer followed by a softmax classifier,
@@ -66,8 +82,17 @@ We denote both MLP models as MLP and show their detailed results in the later se
 \subsection{Restricted Boltzmann Machine}
 Restricted Boltzmann machine (RBM)~\cite{RBMTechReport} is a type of energy-based model,
 which associate a scalar energy to each configuration vector of the variables in the network.
-In energy-based model, learning is the process of configuring the network weights so that
-the average energy over training data is minimized.
+In energy-based model, learning is the process of configuring the network weights to minimize
+the average energy over training data.
+Both Boltzmann machine and RBM consists of a layer of hidden units connected to a layer of visible units.
+However ``restricted" means that connections are just between hidden and visible layer,
+but not within hidden layers or visible layers.
+This makes its training to be faster than Boltzmann machine and makes it feasible to
+stack multiple separately trained RBM together to form deep architecture.
+Furthermore, \cite{TrainCD} found out that instead of doing alternating Gibbs sampling for a large number of iterations,
+using several full steps of alternating Gibbs sampling can quickly obtain a set of good weights for both layers.
+
+\iffalse
 RBM consists of a layer of hidden units (H) and a layer of visible units (V).
 Here ``restricted" means that connections are just between hidden and visible layer,
 but not within hidden layers or visible layers.
@@ -137,6 +162,16 @@ This is called contrastive divergence using one full step of alternating Gibbs s
 Contrastive divergence with $n$ rounds of alternating Gibbs sampling
 is usually denoted as CD$n$.
 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.45\textwidth]{figures/rbm.png}
+    \caption{Restricted Boltzmann Machine.
+        Figure courtesy of https://commons.wikimedia.org/wiki/File:Restricted-boltzmann-machine.svg}
+    \label{Fig:RBMArchitecture}
+\end{figure}
+
+\fi
+
 For each task, we build a RBM with 800-hidden units to perform unsupervised learning first on the dataset.
 We train the RBM using CD1 with batch size 10 for 160 epochs.
 The learning rate is initialized at 0.01 and decay exponentially with the base of 0.64.
@@ -147,16 +182,18 @@ Then we finetune the MLP for 300 epochs with small learning rate of 0.01.
 We denote this restricted Boltzmann machine initialized MLP as RBM and report its
 performance in the later section.
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.45\textwidth]{figures/rbm.png}
-    \caption{Restricted Boltzmann Machine.
-        Figure courtesy of https://commons.wikimedia.org/wiki/File:Restricted-boltzmann-machine.svg}
-    \label{Fig:RBMArchitecture}
-\end{figure}
+
 
 
 \subsection{Autoencoders}
+An autoencoder neural network is an unsupervised model with typically one hidden layer that
+tries to set the output layer to be equal to the input.
+However, to prevent the network from learning the meaningless identity function,
+we need to place extra constraints on the network, giving birth to different
+flavors of autoencoders.
+The \textbf{sparse autoencoder} works by placing a sparsity constraint on the activities of the hidden neurons~\cite{SparseAE}.
+
+\iffalse
 An autoencoder neural network is an unsupervised model with typically one hidden layer that
 tries to set the output layer to be equal to the input.
 As shown in Figure~\ref{Fig:AEArchitecture}, we want the network to
@@ -174,7 +211,6 @@ In this project we consider one of the most popular types of autoencoder, sparse
     \label{Fig:AEArchitecture}
 \end{figure}
 
-\iffalse
 The \textbf{denoising autoencoder} algorithm is proposed by~\cite{DenoiseAE} and illustrated in
 Figure~\ref{Fig:dAEAlgorithm}.
 To prevent learning identity function, an example $\mathbf{x}$ is first corrupted, either by
@@ -209,8 +245,6 @@ for example support vector machines (SVM).
     \label{Fig:dAEAlgorithm}
 \end{figure}
 
-\fi
-
 The \textbf{sparse autoencoder} works by placing a sparsity constraint on the hidden units~\cite{SparseAE}.
 First, we make the autoencoder's hidden layer size to be over-complete,
 that is, of larger size comparing to the dimension of the input.
@@ -237,6 +271,7 @@ The sparsity penalty term is integrated into the cost function by adding another
     L(W, b) = \frac{1}{2}||h_{W,b}(\mathbf{x}) - \mathbf{x}||^2 +
     \beta \sum_j^{n_2} KL(\rho || \hat{\rho}_j)
 \end{align}
+\fi
 
 Our implementation of the sparse autoencoder is different from the
 self-taught learning approaches in~\cite{STL-NIDS, SparseAE},
@@ -317,16 +352,16 @@ In the future, we will also attempt the semi-supervised classification framework
 \subsection{Wide and Deep Learning with Embeddings}
 \label{SubSec:WD}
 In the network intrusion dataset, categorical and integer features are extremely sparse.
-For illustration reason, we plot the histogram of the ``dloss" integer feature in UNSW-NB15 dataset,
-which denotes the number of destination packets retransmitted or dropped.
-As shown in~\ref{Fig:DlossHist}, ``dloss"'s values range from 0 to 6000, while more than 97\%
-of the occurred value is 0 but values from 1000 to 6000 do appear in the dataset.
+%For illustration reason, we plot the histogram of the ``dloss" integer feature in UNSW-NB15 dataset,
+%which denotes the number of destination packets retransmitted or dropped.
+%As shown in~\ref{Fig:DlossHist}, ``dloss"'s values range from 0 to 6000, while more than 97\%
+%of the occurred value is 0 but values from 1000 to 6000 do appear in the dataset.
 For categorical feature ``proto", which tells one of the 133 protocol types the traffic record belongs to,
 one-hot encoding it will make it become a 133-dimension vector with only one field being one.
 Usually neural networks are not good at utilizing sparse large dimension input.
-
 We tackle this problematic situation in two ways,
 resulting in the combined model proposed in~\cite{WideDeepModel}.
+
 The first solution is to embed the integer or categorical features.
 Simply put, an embedding is a mapping from sparse discrete objects to a dense vector of real numbers.
 It is widely used, also known as ``word2vec", in the natural language processing and machine translation tasks,
@@ -336,13 +371,25 @@ In our case, embedding provide a solution to converting large-vocabulary-size ca
 and sparse integer features to dense vectors of continuous values.
 Deep neural network fed with embedding inputs can generalize better even with less feature engineering.
 As stated in~\cite{WideDeepModel}, these input features to the deep neural nets are denoted as deep components,
-consisted of continuous, one-hot encoded, and embedded features.
-
+consisted of continuous and embedded features.
 On the other hand, we leverage simple linear models with nonlinear feature transformations to deal with sparse inputs,
 namely the wide components proposed in~\cite{WideDeepModel}.
 The wide components consist of two parts: the basis and crossed features.
 The basis features are raw input features that are either integer or categorical.
-The crossed features are cross-product transformations of basis features:
+The crossed features are cross-product transformations of basis features, which memoize the interactions between raw features.
+In summary, the Wide and Deep model actually complements a deep neural network
+with embedded low-dimension input vectors for good generalization;
+Its linear sub-model is integrated with the deep neural network using a weighted sum of each model's output for good memorization.
+
+The wide and deep learning model requires engineering the raw attributes in dataset into basis, crossed, continuous, and embedded components.
+In our implementation, the basis features are all the raw symbolic and integer attributes.
+Crossed features are built by a subset of combinations of the symbolic attributes in a dataset.
+The raw symbolic and integer attributes are fed to the deep neural network as embedded components after conducting embedding.
+The continuous components are straitforwardly the raw continuous attributes.
+To compare with previous proposed models, we set the structure of the deep neural network in the wide and deep model to be
+the same sizes as that of the baseline MLP, namely two hidden layers with size of [800 480].
+
+\iffalse
 \begin{align}
     \Phi_k (\bm{x} ) = \prod_{i=1}^{d} {x_i}^{c_{ki}}
 \end{align}
@@ -365,18 +412,12 @@ c_{ki} =
 \end{align}
 The function of wide components, especially the cross-product transformations,
 is memoization of the raw feature interactions.
-
-In summary, the Wide and Deep model actually complements a deep neural network
-with embedded low-dimension input vectors for good generalization;
-Its linear sub-model, as shown in Figure~\ref{Fig:WideDeepModel}, is integrated with the deep neural network using a weighted sum of each model's output for good memorization.
-
-The wide and deep learning model requires engineering the raw attributes in dataset into basis, crossed, continuous, and embedded components.
-In our implementation, the basis features are all the raw symbolic and integer attributes.
-Crossed features are built by a subset of combinations of the symbolic attributes in a dataset.
-The raw symbolic and integer attributes are fed to the deep neural network as embedded components after conducting embedding.
-The continuous components are straitforwardly the raw continuous attributes.
-To compare with previous proposed models, we set the structure of the deep neural network in the wide and deep model to be
-the same sizes as that of the baseline MLP, namely two hidden layers with size of [800 480].
+\begin{figure*}[h]
+    \centering
+    \includegraphics[width=0.98\textwidth]{figures/WideDeepModel.png}
+    \caption{Anatomy of Wide and Deep Model}
+    \label{Fig:WideDeepModel}
+\end{figure*}
 
 \begin{figure}[h]
     \centering
@@ -384,10 +425,4 @@ the same sizes as that of the baseline MLP, namely two hidden layers with size o
     \caption{Histogram of the Feature ``dloss" from UNSW-NB15 Dataset.}
     \label{Fig:DlossHist}
 \end{figure}
-
-\begin{figure*}[h]
-    \centering
-    \includegraphics[width=0.98\textwidth]{figures/WideDeepModel.png}
-    \caption{Anatomy of Wide and Deep Model}
-    \label{Fig:WideDeepModel}
-\end{figure*}
+\fi
