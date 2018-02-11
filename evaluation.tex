@@ -83,7 +83,7 @@ Harder training dataset is probably one of the reasons that testing accuracies f
 are commonly higher than the testing accuracies for NSL-KDD task,
 since classifier only have access to training dataset.
 In this situation, even though SVM has similar training accuracy to neural networks (93\% vs 94\%),
-its testing accuracy falls far behind by 5\% (comparing to MLP) to 9 (comparing to WnD)\%,
+its testing accuracy falls far behind by 5\% (comparing to MLP) to 9\% (comparing to WnD),
 showing the superior generalization capability of deep neural network models.
 
 \begin{figure}[h]
@@ -96,7 +96,41 @@ showing the superior generalization capability of deep neural network models.
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.48\textwidth]{figures/comp_accuracy_unsw.pdf}
-    \caption{Metric Comparison of  on UNSW-NB15 Task}
+    \caption{Metric Comparison of on UNSW-NB15 Task}
     \label{Fig:CompAccuracyUNSW}
 \end{figure}
+
+\begin{table}[]
+    \centering
+    \caption{Metric Comparison on NSL-KDD Task}
+    \label{Tab:PrecisionRecall}
+    \begin{tabular}{c|c|ccccc}
+        \hline
+        \hline
+                             &            & \multicolumn{5}{c}{Traffic Class} \\
+        \cline{3-7}
+                             &            & Normal & DoS   & Probe & U2R   & R2L \\
+        \hline
+        \multirow{2}{*}{SVM} & Precision  & 72.82  & 75.27 & 93.85 &  6.32 & 96.65 \\
+        \cline{2-2}
+                             & Recall     & 96.18  & 72.16 & 82.16 &  6.06 & 13.34 \\
+        \hline
+        \multirow{2}{*}{MLP} & Precision  & 69.18  & 95.49 & 85.58 & 59.52 & 92.01 \\
+        \cline{2-2}
+                             & Recall     & 96.66  & 82.31 & 69.28 &  6.31 & 15.03 \\
+        \hline
+        \multirow{2}{*}{RBM} & Precision  & 69.41  & 95.41 & 85.23 & 41.51 & 93.86 \\
+        \cline{2-2}
+                             & Recall     & 96.81  & 83.89 & 64.74 &  5.56 & 15.48 \\
+        \hline
+        \multirow{2}{*}{SAE} & Precision  & 70.20  & 95.63 & 84.70 & 65.00 & 87.76 \\
+        \cline{2-2}
+                             & Recall     & 96.92  & 83.34 & 70.56 &  3.28 & 16.29 \\
+        \hline
+        \multirow{2}{*}{WnD} & Precision  & 70.08  & 95.59 & 84.02 & 60.34 & 91.57 \\
+        \cline{2-2}
+                             & Recall     & 96.88  & 83.64 & 67.84 &  4.53 & 15.34 \\
+        \hline
+    \end{tabular}
+\end{table}
 

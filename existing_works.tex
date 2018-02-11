@@ -1,35 +1,30 @@
 \section{Existing Works}
-There are a large number of NIDSes that adopt machine learning and data mining approaches, and we only review a few of them that achieve state-of-the-art detection performance.
+There are a large number of NIDSes that adopt machine learning and data mining approaches,
+and we only review a few of them that achieve state-of-the-art detection performance.
 There are very limited number of existing network intrusion detection systems that adopt
 deep learning approaches.
-Their details can be found in section~\ref{Sec:Architectures}.
 
-\subsection{State-of-Art Machine Learning Approaches}
 Researchers have modeled the intrusion detection process as an unsupervised
 anomaly detection problem including Mahalanobis-distance based outliner detection~\cite{ComparativeAnomalyNIDS}, density-based outliner detection~\cite{LOF, ComparativeAnomalyNIDS},
 evidence accumulation for ranking outliner~\cite{RankingOutliner}.
 One of the advantage of these unsupervised approaches is to tackle the problem of
 the unavailability of labeled traffic data.
-
-Alternatively, prior researchers made a lot of effort to obtain meaningful
+Alternatively, prior researchers take a great effort to obtain meaningful
 attacking data and to convert them into labeled data~\cite{DARPA, KDDCup, NSL-KDD, UNSW, UNSW1}.
 Such efforts make it possible to apply supervised machine learning algorithms to the
 intrusion detection problem.
 Successfully applied approaches include decision trees~\cite{DecisionTree},
 linear and non-linear support vector machines~\cite{SVM}, NB-Tree~\cite{NB-Tree} and so on.
-To the best of the authors' knowledge, there are two works that achieved the best prediction
+To the best of our knowledge, there are two works that achieved the best prediction
 accuracy on the two different datasets respectively.
 For the UNSW-NB15 dataset, it is reported in~\cite{RampLossKSVCR} that extending K-support vector
 classification-regression~\cite{KSVCR} with ramp loss, called Ramp-KSVCR approach, can achieve the state-of-the-art accuracy of 93.52\%.
-The authors of Ramp-KSVCR also report that their approach can achieve 98.68\% accuracy on the NSL-KDD dataset.
 On the other hand, the creators of UNSW-NB15 dataset~\cite{UNSW} proposed an approach called
 Geometric Area Analysis techniques using trapezoidal area estimation (GAA-ADS for short)~\cite{GAA-ADS}.
-It achieves the bese known accuracy on NSL-KDD dataset (99.7\%) and a slightly worse accuracy on
-UNSW-NB15 dataset (92.8\%).
+It achieves the bese known accuracy on NSL-KDD dataset (99.7\%) and
+a slightly worse accuracy on UNSW-NB15 dataset (92.8\%).
 
-
-\subsection{Deep Learning Flavor Approaches}
-There are some pioneer works that introduced deep learning approaches to intrusion detection.
+There are limited amount of pioneer works that introduced deep learning approaches to intrusion detection.
 For example, \cite{STL-NIDS} adopts sparse autoencoder and the self-taught learning
 scheme~\cite{SparseAE} to handle the problem of limited amount of labeled data for training supervised model.
 Similar semi-supervised approach have also been applied to
