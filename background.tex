@@ -5,30 +5,30 @@ to artificial intelligence, as well as their implications for network intrusion 
 In the supervise learning framework, given the feature representations and inference models,
 learning is an optimization process which minimizes a predefined loss function
 over given training examples.
-The most commonly used optimization algorithm is back-propagation(BP)~\cite{Backpropagation} with gradient descent,
+The most commonly used optimization algorithm is back-propagation (BP)~\cite{Backpropagation} with gradient descent,
 because computing gradient is Hessian-free and memorization saves a significant amount of computation when
 propagating backward level by level.
-However, it is impossible to train deep neural networks and achieve optimal parameters only with BP.
+However, it is hard to train deep neural networks and achieve optimal weights only with BP.
 The first problem is that the cost function is usually non-convex;
 optimizing algorithms using only first-order gradient is likely to be stuck at a poor local minimum.
-Secondly, exploding and vanishing gradient makes back-propagation difficult to train models with many layers stacked together, such as recurrent neural networks and stacked Restricted Boltzmann Machines.
+Secondly, exploding and vanishing gradient makes back-propagation difficult to train models with many layers stacked together,
+such as deep recurrent neural networks.
 Even if we can tolerate the long training time and carefully deal with gradient exploding and vanishing,
-the trained model is usually over-fitted to the training dataset, and not able to generalize well to the testing or future dataset.
+the trained model is usually over-fitted to the training dataset, and not able to generalize well to the testing or future datasets.
 
 The emergence of many novel learning algorithms and training techniques enables us to train deep
-neural networks to achieve good suboptimal minimum.
+neural networks that achieve good suboptimal minimums.
 For example, stochastic gradient descent (SGD) with mini-batches can significantly increase the training speed comparing
 to normal gradient descent on the entire dataset.
 In each step of gradient descent, researchers have shown that momentum~\cite{Momentum} can
 prevent SGD from oscillating across but pushing along the shallow ravine.
-Along with decaying learning rate, momentum-based optimization algorithms (e.g., Adam~\cite{Adam}) often find a better local minimum.
-To prevent over-fitting, researchers have proposed dropout~\cite{Dropout} to average over an exponential number of neural networks.
-These learning algorithms and training techniques will directly help neural networks achieve
-better performance for the network intrusion detection problem,
-since they are general to any types of neural network models.
+Along with decaying learning rate, momentum-based optimization algorithms (e.g., Adam~\cite{Adam}) often find better local minimums.
+To prevent over-fitting, researchers have proposed dropout~\cite{Dropout} to average over exponential number of neural networks.
+These general learning algorithms and training techniques will directly help neural networks achieve
+better performance for the network intrusion detection problem.
 
 Another breakthrough in the deep learning area is that researchers have successfully trained
-a number of useful unsupervised generative models.
+a number of meaningful unsupervised generative models.
 Different from supervised models (or discriminative models) that aim to discover
 the relationship between input variables and target labels (or the conditional probability distribution of the targets given the inputs),
 these models aim to learn the joint probability distribution or the joint conditional distribution,
@@ -46,13 +46,12 @@ Additionally, researchers have shown that it is usually an excellent strategy to
 
 In the area of network intrusion detection, the amount of network traffic data is massive,
 %e.g., in the order of terabytes per day in a large monitored network. In practice, the amount of data is 
-which makes impossible for security analysts to find malicious patterns and label anomalies.
+which makes it hard for security analysts to find malicious patterns and label anomalies.
 This situation makes an unsupervised generative model a promising solution
 to traffic classification. %since it can be trained unsupervised:
 First, it utilizes the vast amount of unlabeled data to learning useful and hierarchical features. Second, it effectively initializes the weights of the hidden layers in a deep neural network, which allows further fine-tuning towards a high-performance classifier.
-In this paper, we investigate three types of generative models, i.e.,
-restricted Boltzmann machine, autoencoders and generative adversarial nets (see section~\ref{Sec:Architectures}). 
-We also list the dimension and amount of the NIDS training datasets that we used in this paper alongside with those famous image classification datasets in Table~\ref{Tab:Datasets}.
+In this paper, we investigate two types of generative models, i.e.,
+restricted Boltzmann machine and autoencoders(see section~\ref{Sec:Architectures}). 
 
 %In addition to the sophisticated and efficient learning algorithms, abundant open data in the domain of image classification, natural language processing, or machine translation actually drive the novel and complex neural network models and make them successful.
 %Table~\ref{Tab:Datasets} lists the dimension and amount of the training dataset for various image classification tasks.

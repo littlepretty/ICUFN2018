@@ -1,7 +1,7 @@
 \section{Introduction}
 
 Network intrusion detection system (NIDS) is the essential security technology that
-aims to protect any networked system efficiently and automatically.
+aims to protect any networked systems efficiently and automatically.
 As either a hardware device or software application,
 it monitors a network for malicious activities or policy violations.
 By intercepting and analyzing the bi-direction traffics through the network,
@@ -26,17 +26,19 @@ In this project, we follow the anomaly detection based idea, and tries to enhanc
 state-of-art machine learning technology, e.g. various deep neural networks trained by innovative algorithms.
 Specifically, we have made the following contributions:
 \begin{itemize}
-    \item Firstly, we introduce the background of deep learning approaches and techniques,
+    \item Firstly, we introduce the background of deep learning models and techniques,
         and discuss why they may better solve the network intrusion detection problem.
     %Besides, we also survey and discuss the status quo of available network intrusion detection datasets
     %and its implication on applying deep learning models to network intrusion detection.
     \item Then we briefly review the existing state-of-the-art machine learning solutions to network intrusion detection.
-        After that, we describe several the cutting-edge deep learning models.
+        After that, we describe several groups of the cutting-edge deep learning models
+        in concisely mathematical languages.
     \item We conduct a quantitatively comparative study of each of them with
         two off-line network intrusion detection datasets~\cite{NSL-KDD, UNSW},
         with the help of our own TensorFlow-based deep learning library, NetLeaner.
-        The detection performance is measured in accuracy, precision, and recall.
+        The detection performance is measured in accuracy, precision and recall.
     \item We not only make the codebase of NetLearner publicly available to research community,
         but also share the deep learning related hacks and tricks used during the training phase,
         so that future researches can easily reproduce and extend our work.
 \end{itemize}
+

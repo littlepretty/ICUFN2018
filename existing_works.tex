@@ -1,22 +1,11 @@
-\section{Existing Works}
+\section{Related Work}
 There are a large number of NIDSes that adopt machine learning and data mining approaches,
 and we only review a few of them that achieve state-of-the-art detection performance.
-There are very limited number of existing network intrusion detection systems that adopt
-deep learning approaches.
 
 Researchers have modeled the intrusion detection process as an unsupervised
-anomaly detection problem including Mahalanobis-distance based outliner detection~\cite{ComparativeAnomalyNIDS}, density-based outliner detection~\cite{LOF, ComparativeAnomalyNIDS},
-evidence accumulation for ranking outliner~\cite{RankingOutliner}.
-One of the advantage of these unsupervised approaches is to tackle the problem of
-the unavailability of labeled traffic data.
-Alternatively, prior researchers take a great effort to obtain meaningful
-attacking data and to convert them into labeled data~\cite{DARPA, KDDCup, NSL-KDD, UNSW, UNSW1}.
-Such efforts make it possible to apply supervised machine learning algorithms to the
-intrusion detection problem.
-Successfully applied approaches include decision trees~\cite{DecisionTree},
-linear and non-linear support vector machines~\cite{SVM}, NB-Tree~\cite{NB-Tree} and so on.
-To the best of our knowledge, there are two works that achieved the best prediction
-accuracy on the two different datasets respectively.
+anomaly detection problem including Mahalanobis-distance based outliner detection~\cite{ComparativeAnomalyNIDS}, density-based outliner detection~\cite{LOF, ComparativeAnomalyNIDS}, and evidence accumulation for ranking outliner~\cite{RankingOutliner}.
+A key advantage of those unsupervised approaches is to address the unavailability of labeled network traffic data. Researchers also investigate methods to obtain useful attacking data and convert them into labeled data~\cite{DARPA, KDDCup, NSL-KDD, UNSW, UNSW1}, which enable us to apply supervised machine learning algorithms to the intrusion detection problem.
+Examples include decision trees~\cite{DecisionTree}, linear and non-linear support vector machines~\cite{SVM}, and NB-Tree~\cite{NB-Tree}. To the best of our knowledge, two works achieved the best prediction accuracy on the aforementioned two different datasets respectively.
 For the UNSW-NB15 dataset, it is reported in~\cite{RampLossKSVCR} that extending K-support vector
 classification-regression~\cite{KSVCR} with ramp loss, called Ramp-KSVCR approach, can achieve the state-of-the-art accuracy of 93.52\%.
 On the other hand, the creators of UNSW-NB15 dataset~\cite{UNSW} proposed an approach called
