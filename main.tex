@@ -50,7 +50,7 @@
 
 
 
-\documentclass[conference,compsoc]{IEEEtran}
+\documentclass[conference]{IEEEtran}
 % Some/most Computer Society conferences require the compsoc mode option,
 % but others may want the standard conference format.
 %
@@ -345,8 +345,7 @@
 % not capitalized unless they are the first or last word of the title.
 % Linebreaks \\ can be used within to get better formatting as desired.
 % Do not put math or special symbols in the title.
-\title{A Comparative Study of Deep Learning Approaches in Off-Line Network Intrusion Detection
-\footnote{The codebase for our project is available on https://github.com/littlepretty/NetLearner}}
+\title{A Comparative Study of Deep Learning Approaches in Off-Line Network Intrusion Detection}
 
 
 % author names and affiliations
@@ -364,6 +363,12 @@ Email: jyan31@hawk.iit.edu}
 Illinois Institute of Technology\\
 Chicago, Illinois 60616\\
 Email: dong.jin@iit.edu}
+\and
+\IEEEauthorblockN{Cheol Won Lee}
+\IEEEauthorblockA{National Security Research Institute\\
+1559, Yuseong-daero, Yuseong-gu\\
+Daejeon, South Korea\\
+Email: cheolee@nsr.re.kr}
 }
 
 % conference papers do not typically use \thanks and this command
@@ -401,7 +406,7 @@ Email: dong.jin@iit.edu}
 % As a general rule, do not put math, special symbols or citations
 % in the abstract
 \begin{abstract}
-Network intrusion detection system (NIDS) is essential to the security of any systems with communication capability.
+Network intrusion detection system (NIDS) is essential to the security of any communication systems.
 Recently a handful of novel deep neural networks bundled with more advanced and smarter
 training algorithms have achieved unprecedentedly good performance on image classification,
 natural language processing, speech recognition and many other research branches.
@@ -410,14 +415,11 @@ this paper introduces a bunch of deep learning models to the design of NIDS
 and conducts a comparative evaluation of these models.
 Firstly, we introduce general deep learning methodology and its potential implication on the
 network intrusion detection problem.
-%Besides, we also survey and discuss the status quo of available network intrusion detection datasets
-%and its implication on applying deep learning models to network intrusion detection.
-Then we briefly review the existing machine learning solutions to two network intrusion detection tasks, namely the NSL-KDD dataset and the UNSW-NB15 dataset.
+Then we briefly review the existing machine learning solutions to two network intrusion detection tasks,
+namely the NSL-KDD dataset and the UNSW-NB15 dataset.
 After describing a set of cutting-edge deep learning models in concisely mathematical languages,
-we conduct a quantitatively comparative evaluation of each of them under the help of
+we conduct a quantitatively comparative evaluation of them with the help of
 our own TensorFlow-based deep learning library, NetLeaner.
-%Apart from making NetLearner publicly available, we also share the hacks and tricks
-%used during the training phase so that future researchers can easily reproduce and extend our work.
 \end{abstract}
 
 % no keywords
@@ -437,8 +439,8 @@ our own TensorFlow-based deep learning library, NetLeaner.
 
 \input{intro}
 \input{background}
-\input{existing_works}
 \input{datasets}
+\input{existing_works}
 \input{architectures}
 \input{evaluation}
 \input{conclusion}

@@ -6,7 +6,8 @@ there are only three easy-to-identify common features: src\_bytes, dst\_bytes an
 As a result, we consider each dataset are an standalone network intrusion detection task.
 Among alternative available datasets,
 we choose both NSL-KDD dataset and UNSW-NB15 dataset as our targeted tasks.
-We list the dimension and amount of the NIDS training datasets that we used in this paper along with those famous image classification datasets in Table~\ref{Tab:Datasets}.
+We list the dimension and amount of the NIDS training datasets that
+we used in this paper along with those famous image classification datasets in Table~\ref{Tab:Datasets}.
 
 \subsection{NSL-KDD Dataset}
 The NSL-KDD dataset originates from the KDDCup 99 dataset~\cite{KDDCup},
@@ -47,3 +48,22 @@ The only common type of attack between UNSW-NB15 and NSL-KDD is DoS.
 The new attacks in UNSW-NB15 are analysis, backdoor, exploits, fuzzers, generic, reconnaissance, shellcode, and worms.
 In this project, we consider the 2-class classification problem for UNSW-NB15 dataset: the
 task of the classifiers is to predict a given traffic is either normal or malicious.
+
+\begin{table}[]
+\centering
+\caption{Popular Datasets used in Deep Learning v.s. Available Network Intrusion Detection Datasets}
+\label{Tab:Datasets}
+\begin{tabular}{c|c|r|r}
+\multicolumn{1}{c|}{Domain}                          & Dataset       & Training Examples & Feature Dimension \\
+\hline
+\hline
+\multirow{6}{*}{Image}                               & MNIST         & 60,000        & 784     \\
+                                                     & SVHN          & 600,000       & 3072    \\
+                                                     & CIFAR-10      & 60,000        & 3072    \\
+                                                     & Tiny          & 80 million    & 3072    \\
+                                                     & ImageNet      & 1.2 million   & 196,608 \\
+\hline
+\multicolumn{1}{c|}{\multirow{2}{*}{NIDS}}            & UNSW-NB15     & 175,341       & 42      \\
+\multicolumn{1}{l|}{}                                & NSL-KDD       & 125,973       & 41      
+\end{tabular}
+\end{table}

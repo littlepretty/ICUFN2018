@@ -1,5 +1,5 @@
 \section{Deep Learning Background}
-We identify three main reasons why deep learning succeeds in many areas related
+We identify two main reasons why deep learning succeeds in many areas related
 to artificial intelligence, as well as their implications for network intrusion detection.
 
 In the supervise learning framework, given the feature representations and inference models,
@@ -32,7 +32,7 @@ a number of meaningful unsupervised generative models.
 Different from supervised models (or discriminative models) that aim to discover
 the relationship between input variables and target labels (or the conditional probability distribution of the targets given the inputs),
 these models aim to learn the joint probability distribution or the joint conditional distribution,
-of \textbf{all} variables for a phenomenon from the given dataset.
+of all variables for a phenomenon from the given dataset.
 The resulting generative model is powerful in many ways.
 First, given the well-trained probability distribution, the model can synthesize meaningful data
 comparable to real examples in the training set.
@@ -72,25 +72,6 @@ GooLeNet~\cite{GoogLeNet} won the ILSVRC 2014 with top-5 error rate of 6.7\%.
 It has 22 layers and strayed from the simple design of stacking convolutional and pooling layers.
 One year later, residual block based ResNet~\cite{ResNet} pushed the error rate further down to 3.6\% with even deeper architecture.
 \fi
-
-\begin{table}[]
-\centering
-\caption{Popular Datasets used in Deep Learning v.s. Available Network Intrusion Detection Datasets}
-\label{Tab:Datasets}
-\begin{tabular}{c|c|r|r}
-\multicolumn{1}{c|}{Domain}                          & Dataset       & Training Examples & Feature Dimension \\
-\hline
-\hline
-\multirow{6}{*}{Image}                               & MNIST         & 60,000        & 784     \\
-                                                     & SVHN          & 600,000       & 3072    \\
-                                                     & CIFAR-10      & 60,000        & 3072    \\
-                                                     & Tiny          & 80 million    & 3072    \\
-                                                     & ImageNet      & 1.2 million   & 196,608 \\
-\hline
-\multicolumn{1}{c|}{\multirow{2}{*}{NIDS}}            & UNSW-NB15     & 175,341       & 42      \\
-\multicolumn{1}{l|}{}                                & NSL-KDD       & 125,973       & 41      
-\end{tabular}
-\end{table}
 
 %\begin{table*}[]
 %\centering

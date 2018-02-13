@@ -11,31 +11,18 @@ ifeq ($(UNAME), Darwin)
 	VIEWER=open -a Preview
 endif
 
-TRANS_NAME=main
-CONF_NAME=main_conf
+NAME=main
 
 .PHONY: clean, view
 
-trans:
-	$(PDFLATEX) $(TRANS_NAME).tex
-	$(BIBTEX)   $(TRANS_NAME).aux
-	$(PDFLATEX) $(TRANS_NAME).tex
-	$(PDFLATEX) $(TRANS_NAME).tex
-
 conf:
-	$(PDFLATEX) $(CONF_NAME).tex
-	$(BIBTEX)   $(CONF_NAME).aux
-	$(PDFLATEX) $(CONF_NAME).tex
-	$(PDFLATEX) $(CONF_NAME).tex
+	$(PDFLATEX) $(NAME).tex
+	$(BIBTEX)   $(NAME).aux
+	$(PDFLATEX) $(NAME).tex
+	$(PDFLATEX) $(NAME).tex
 
-view_trans: trans 
-	$(VIEWER) $(TRANS_NAME).pdf
-	rm *.log *.aux *.out *.blg *.bbl
-	#rm *-eps-converted-to.pdf
-	#pdffonts main.pdf
-
-view_conf: conf
-	$(VIEWER) $(CONF_NAME).pdf
+view: conf
+	$(VIEWER) $(NAME).pdf
 	rm *.log *.aux *.out *.blg *.bbl
 	#rm *-eps-converted-to.pdf
 	#pdffonts main.pdf

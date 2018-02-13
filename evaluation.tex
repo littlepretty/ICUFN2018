@@ -1,31 +1,30 @@
 \section{Experimental Evaluation}
 
 We now evaluate the models developed in NetLearner on (1) the 5-class NSL-KDD task and (2) the 2-class UNSW-NB15 task using the following metrics.
-
-\textbf{Accuracy} is the percentage of correctly classified connections
-    over the total number of connections in the dataset:
-    \begin{align}
-        A = \frac{\text{Correct Predictions}}{\text{Number of Records}}
-    \end{align} 
-    Accuracy is not suitable for evaluating biased datasets where the number
-    of records of one class is extremely larger than the number of
-    records of another class.
-    In NSL-KDD dataset, the number of available U2R records (i.e., 67)
-    is two orders of magnitude less than the number of records in other classes
-    (i.e., 9711, 7458, 2887 and 2121).
-    Therefore, we also consider the precision and recall.
-
-\textbf{Precision} is the percentage of the correctly classified positives over
-    the total number of positives predicted by the classifier:
-            \begin{align}
-                P = \frac{\text{True Positives}}{\text{True Positives} + \text{False Positives}}
-            \end{align}
-
-\textbf{Recall} is the percentage of the correctly classified positives over
-    the total number of relevant elements:
-            \begin{align}
-                R = \frac{\text{True Positives}}{\text{True Positives} + \text{False Negatives}}
-            \end{align}
+\begin{itemize}
+    \item \textbf{Accuracy} is the percentage of correctly classified connections
+        over the total number of connections in the dataset:
+        \begin{align}
+            A = \frac{\text{Correct Predictions}}{\text{Number of Records}}
+        \end{align} 
+        Accuracy is not suitable for evaluating biased datasets where the number
+        of records of one class is extremely larger than the number of
+        records of another class.
+        In NSL-KDD dataset, the number of available U2R records (i.e., 67)
+        is two orders of magnitude less than the number of records in other classes
+        (i.e., 9711, 7458, 2887 and 2121).
+        Therefore, we also consider the precision and recall.
+    \item \textbf{Precision} is the percentage of the correctly classified positives over
+        the total number of positives predicted by the classifier:
+                \begin{align}
+                    P = \frac{\text{True Positives}}{\text{True Positives} + \text{False Positives}}
+                \end{align}
+    \item \textbf{Recall} is the percentage of the correctly classified positives over
+        the total number of relevant elements:
+                \begin{align}
+                    R = \frac{\text{True Positives}}{\text{True Positives} + \text{False Negatives}}
+                \end{align}
+\end{itemize}
 %The weight for each class is determined by its proportion in the test dataset,
 %namely [0.431, 0.107, 0.339, 0.018, 0.105] for class [Normal, Probe, DoS, U2R, R2L] respectively.
 %Besides, we also calculate the confusion matrices of the classification results when applying
@@ -46,13 +45,14 @@ sparse autoencoder finetuned neural network (SAE) and wide linear classifier and
 Before training machine learning models, research need to take a great effort to search
 the optimal hyper-parameters that fit both problem domain and model.
 In our case, we manually set all the hyper-parameters, e.g. number of layers, number of neurons
-in each layers, learning rate, batch size, to be the same across all considered models such that
-it is easier to compare them.
+in each layers, learning rate, batch size, to be the same across all considered models
+so that it is easier to compare them.
 We then use 5-fold cross-validation on the training datasets to determine the optimal training time $T$
 for each models.
 At last, we train the model for $T$ epochs and report the metrics on the testing dataset,
 which is never touched during training phase.
-In this way, we have fixed the complexity of the compared models.
+Determining training time (model complexity) by cross validation with fixed common hyper-parameters
+ensures that the deep learning models are neither overfitting nor underfitting.
 The accuracies of each classifier on test datasets for both tasks are
 shown in Figure~\ref{Fig:CompAccuracyNSL} and Figure~\ref{Fig:CompAccuracyUNSW} respectively.
 In the 2-class UNSW-NB15 dataset,
@@ -62,7 +62,7 @@ For the 5-class NSL-KDD task, we adopt the approach in~\cite{STL-NIDS}
 to calculate the weighted precisions and recalls and plot them along with accuracy in Figure~\ref{Fig:CompAccuracyNSL}.
 The per-class precisions and recalls are also separately listed in Table~\ref{Tab:PrecisionRecall}.
 
-For the NSL-KDD task, all classifiers have achieved very high training accuracy (no less than 99\%, not reported in figures).
+For the NSL-KDD task, all classifiers have achieved very high training accuracy (no less than 99\%).
 However, none of the classifiers do a great job on the testing data;
 there is a gap between training accuracy and testing accuracy (as low as 78.4\%).
 As the representative of the classic machine learning approach, SVM achieves a 78.5\% accuracy
@@ -83,7 +83,7 @@ have much greater reliability in identifying these attacking traffics ($\approx$
 For the UNSW-NB15 we see similar phenomenon: the average accuracies of RBM, SAE and WnD are
 all higher than MLP, for the same reason in NSL-KDD task.
 We notice WnD has significantly improved MLP's performance by around 5\%.
-Different from NSL-KDD task, the training accuracies of all the approaches (not reported in figures) are mediocre,
+Different from NSL-KDD task, the training accuracies of all the approaches are mediocre,
 with maximum at 94.4\%, in contrast to NSL-KDD case where everyone has higher than 99\% training accuracy.
 The lower UNSW-NB15 training accuracies, we believe, are mostly because its training dataset
 is more difficult than NSL-KDD training dataset.

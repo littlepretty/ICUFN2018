@@ -77,7 +77,6 @@ one for the NSL-KDD task and the other for the UNSW-NB15 task.
 Both MLP are trained with Adam optimizer~\cite{Adam} for 200 epochs and batch size 80.
 During the training, learning rate decays from 0.1 exponentially with the base of 0.96.
 We do not include regularization in the model, but do apply dropout of probability 0.2 to prevent overfitting.
-We denote both MLP models as MLP and show their detailed results in the later section.
 
 \subsection{Restricted Boltzmann Machine}
 Restricted Boltzmann machine (RBM)~\cite{RBMTechReport} is a type of energy-based model,
@@ -179,18 +178,13 @@ We then create a separate MLP with the same configuration as that in section~\re
 but initialize its weights in the first hidden layer (also 800 neurons) to be that of the RBM's.
 We hope such action could enhance the quality of MLP.
 Then we finetune the MLP for 300 epochs with small learning rate of 0.01.
-We denote this restricted Boltzmann machine initialized MLP as RBM and report its
-performance in the later section.
-
-
-
 
 \subsection{Autoencoders}
 An autoencoder is an unsupervised neural network with typically one hidden layer that sets the output layer to be equal to the input.
 However, to prevent the network from learning the meaningless identity function,
 we need to place extra constraints on the network, giving birth to different
 flavors of autoencoders.
-The \textbf{sparse autoencoder} works by placing a sparsity constraint on the activities of the hidden neurons~\cite{SparseAE}.
+The sparse autoencoder works by placing a sparsity constraint on the activities of the hidden neurons~\cite{SparseAE}.
 
 \iffalse
 An autoencoder neural network is an unsupervised model with typically one hidden layer that
@@ -290,8 +284,6 @@ We then create a separate MLP with same configuration as that in section~\ref{Su
 and initialize its first layer weights with the learnt weights of the autoencoder.
 During finetuning the MLP, we used SGD optimizer with very small initial learning rate 0.004
 and decaying 1e-6 over each update.
-We denote this approach as SAE and report its performance in the later section.
-
 
 \iffalse
 \subsection{Generative Adversarial Nets}
