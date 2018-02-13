@@ -3,11 +3,12 @@ import matplotlib.pyplot as plt
 import matplotlib
 
 matplotlib.rc('font', size=28)
-filename = open('5Fold240.pkl', 'rb')
+filename = open('5Fold160.pkl', 'rb')
 hist = pickle.load(filename)
 
 fig, ax1 = plt.subplots()
-ax1.plot(hist['train_loss'], 'r--', label='Trainset', linewidth=4)
+print(hist.keys())
+ax1.plot(hist['train_loss'] / 4.0, 'r--', label='Trainset', linewidth=4)
 ax1.plot(hist['valid_loss'], 'b:', label='Validset', linewidth=4)
 ax1.set_ylabel('Average Loss')
 ax1.set_xlim([-5, 165])
