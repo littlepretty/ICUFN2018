@@ -1,6 +1,6 @@
 \section{Experimental Evaluation}
 
-We now evaluate the models developed in NetLearner on (1) the 5-class NSL-KDD task and (2) the 2-class UNSW-NB15 task using the following metrics.
+We evaluate all the models developed in NetLearner on the 5-class NSL-KDD task and the 2-class UNSW-NB15 task using the following metrics.
 \begin{itemize}
     \item \textbf{Accuracy} is the percentage of correctly classified connections
         over the total number of connections in the dataset:
@@ -10,17 +10,17 @@ We now evaluate the models developed in NetLearner on (1) the 5-class NSL-KDD ta
         Accuracy is not suitable for evaluating biased datasets where the number
         of records of one class is extremely larger than the number of
         records of another class.
-        In NSL-KDD dataset, the number of available U2R records (i.e., 67)
+        In the NSL-KDD dataset, the number of available U2R records (i.e., 67)
         is two orders of magnitude less than the number of records in other classes
         (i.e., 9711, 7458, 2887 and 2121).
         Therefore, we also consider the precision and recall.
     \item \textbf{Precision} is the percentage of the correctly classified positives over
-        the total number of positives predicted by the classifier:
+        the total number of positives predicted by the classifier.
                 \begin{align}
                     P = \frac{\text{True Positives}}{\text{True Positives} + \text{False Positives}}
                 \end{align}
     \item \textbf{Recall} is the percentage of the correctly classified positives over
-        the total number of relevant elements:
+        the total number of relevant elements.
                 \begin{align}
                     R = \frac{\text{True Positives}}{\text{True Positives} + \text{False Negatives}}
                 \end{align}
@@ -38,82 +38,81 @@ We now evaluate the models developed in NetLearner on (1) the 5-class NSL-KDD ta
 %Statistics regarding precision, recall and confusion matrices can be found
 %in our detailed technical report~\cite{OurWonReport} and our codebase~\cite{NetLearner}.
 
-For comparison, we train a RBF-kernel SVM using~\cite{ScikitLearnSVM} and report its accuracy along
-with multilayer perceptron (MLP), restricted Boltzmann machine finetuned neural network (RBM),
-sparse autoencoder finetuned neural network (SAE) and wide linear classifier and deep neural network combined model (WnD).
+We train an radial basis function kernel support vector machine (SVM)% using the approach in ~\cite{ScikitLearnSVM},
+and report its accuracy with the multilayer perceptron (MLP) model,
+the restricted Boltzmann machine fine-tuned neural network (RBM),
+the sparse autoencoder fine-tuned neural network (SAE),
+and the wide linear classifier and deep neural network combined model (WnD).
 
-Before training machine learning models, research need to take a great effort to search
-the optimal hyper-parameters that fit both problem domain and model.
-In our case, we manually set all the hyper-parameters, e.g. number of layers, number of neurons
-in each layers, learning rate, batch size, to be the same across all considered models
-so that it is easier to compare them.
+It is critical to search the optimal hyper-parameters that fit the problem domain and model before training machine learning models. We first manually set all the hyper-parameters, including the number of layers, number of neurons in each layer, learning rate, and batch size, to be identical across all the models.
 We then use 5-fold cross-validation on the training datasets to determine the optimal training time $T$
-for each models.
-At last, we train the model for $T$ epochs and report the metrics on the testing dataset,
-which is never touched during training phase.
-Determining training time (model complexity) by cross validation with fixed common hyper-parameters
+for each model.
+Finally, we train the model for $T$ epochs and report the metrics on the testing dataset,
+which is not touched during the training phase.
+Determining the training time (model complexity) by cross-validation with fixed common hyper-parameters
 ensures that the deep learning models are neither overfitting nor underfitting.
-The accuracies of each classifier on test datasets for both tasks are
-shown in Figure~\ref{Fig:CompAccuracyNSL} and Figure~\ref{Fig:CompAccuracyUNSW} respectively.
-In the 2-class UNSW-NB15 dataset,
-the amount of normal and attacking traffic are nearly balanced (37,000 normal v.s. 45,332 attacking records).
-Therefore we only report the precision and recall for the attacking traffics in Figure~\ref{Fig:CompAccuracyUNSW}.
-For the 5-class NSL-KDD task, we adopt the approach in~\cite{STL-NIDS}
-to calculate the weighted precisions and recalls and plot them along with accuracy in Figure~\ref{Fig:CompAccuracyNSL}.
-The per-class precisions and recalls are also separately listed in Table~\ref{Tab:PrecisionRecall}.
+As illustration purpose, we plot the MLP's 5-fold cross validation loss in Figure~\ref{Fig:LossHistory},
+from which we can see that validation loss converges to $\approx$0.02 after 120 epochs, even though training loss is still decreasing.
 
-For the NSL-KDD task, all classifiers have achieved very high training accuracy (no less than 99\%).
-However, none of the classifiers do a great job on the testing data;
-there is a gap between training accuracy and testing accuracy (as low as 78.4\%).
+The accuracies of each classifier are shown in Figure~\ref{Fig:CompAccuracyNSL} for the NSL-KDD task and Figure~\ref{Fig:CompAccuracyUNSW} for the UNSW-NB15 task.
+In the 2-class UNSW-NB15 dataset,
+the volumes of normal and attacking traffic are nearly balanced (i.e., 37,000 normal v.s. 45,332 attacking records).
+Therefore, we only report the precision and recall for the attacking traffics in Figure~\ref{Fig:CompAccuracyUNSW}.
+For the 5-class NSL-KDD task, we adopt the approach in~\cite{STL-NIDS}
+to calculate the weighted precisions and recalls, and plot them together with accuracy in Figure~\ref{Fig:CompAccuracyNSL}.
+The per-class precisions and recalls are also listed in Table~\ref{Tab:PrecisionRecall}.
+
+For the NSL-KDD task, all classifiers achieve high training accuracy (no less than 99\%).
+However, all classifiers show a gap between training accuracy and testing accuracy (as low as 78.4\%).
 As the representative of the classic machine learning approach, SVM achieves a 78.5\% accuracy
 comparable to the deep learning models.
-Our SAE achieves similar accuracy performance to~\cite{STL-NIDS}, which is
-also the best among all the considered models (79.2\%).
-RBM, SAE and WnD all outperform MLP, but for two different reasons.
-Both RBM and SAE provide their underlying MLP with better initial weights in the first layer
+Note that our SAE model achieves the same accuracy performance to~\cite{STL-NIDS}, which is the best among all the considered models (79.2\%).
+RBM, SAE, and WnD all outperform MLP for two different reasons.
+RBM and SAE provide their underlying MLP with better initial weights in the first layer
 than randomly generated numbers.
-WnD, on the other hand, has a slight higher accuracy because of the extra linear model.
+WnD has a slightly higher accuracy because of the extra linear model.
 Table~\ref{Tab:PrecisionRecall} shows two remarkable facts.
-SVM is better at Probe attacks (93\% precision and 82\% recall)
-than all neural networks ($\approx$ 85\% precision and $\leq$ 70\% recall),
-However, it suffers extremely on U2R attacks ($\approx$ 6\% precision and recall).
-Neural networks (MLP, RBM, SAE and WnD), though missing a lot of U2R attacks ($\leq$ 6\% recall),
-have much greater reliability in identifying these attacking traffics ($\approx$ 60\% precision).
+SVM performs better at Probe attacks (93\% precision and 82\% recall)
+than all the neural networks ($\approx$ 85\% precision and $\leq$ 70\% recall),
+However, it suffers hugely on U2R attacks ($\approx$ 6\% precision and recall).
+On the other hand, the neural networks (MLP, RBM, SAE and WnD) miss many U2R attacks ($\leq$ 6\% recall), but they have much higher reliability in identifying these attacking traffic ($\approx$ 60\% precision).
 
-For the UNSW-NB15 we see similar phenomenon: the average accuracies of RBM, SAE and WnD are
-all higher than MLP, for the same reason in NSL-KDD task.
+For the UNSW-NB15 task, the average accuracies of RBM, SAE and WnD are
+all higher than MLP for the same reason mentioned in the NSL-KDD task.
 We notice WnD has significantly improved MLP's performance by around 5\%.
-Different from NSL-KDD task, the training accuracies of all the approaches are mediocre,
-with maximum at 94.4\%, in contrast to NSL-KDD case where everyone has higher than 99\% training accuracy.
-The lower UNSW-NB15 training accuracies, we believe, are mostly because its training dataset
-is more difficult than NSL-KDD training dataset.
-Harder training dataset is probably one of the reasons that testing accuracies for UNSW-NB15 task
-are commonly higher than the testing accuracies for NSL-KDD task,
-since classifier only have access to training dataset.
-In this situation, even though SVM has similar training accuracy to neural networks (93\% v.s. 94\%),
+Different from the NSL-KDD task, the training accuracies of all the approaches are mediocre (up to 94.4\%) in contrast to the NSL-KDD case where the training accuracy of every model is more than 99\%.
+The harder UNSW-NB15 training dataset is one primary reason that the testing accuracies of the UNSW-NB15 task
+are higher than that of the NSL-KDD task, since classifiers only have access to the training dataset.
+Therefore, even though SVM has an equivalent training accuracy to the neural networks (93\% v.s. 94\%),
 its testing accuracy falls far behind by 5\% (comparing to MLP) to 9\% (comparing to WnD),
-showing the superior generalization capability of deep neural network models.
-The detection alarms are mostly trustable for every classifier,
-due to very high recall values $\geq$ 97\%,
-while deep learning models commonly have better precision ($\geq$ 81\%) than SVM (75\%).
+showing the superior generalization capability of the deep neural network models.
+The detection alarms are mostly correct for every classifier,
+due to the high recall values $\geq$ 97\%, and the deep learning models have better precision ($\geq$ 81\%) than SVM (75\%).
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.48\textwidth]{figures/history.pdf}
+    \caption{History of MLP's Average Loss During Cross Validation}
+    \label{Fig:LossHistory}
+\end{figure}
 
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.48\textwidth]{figures/comp_accuracy_nsl.pdf}
-    \caption{Metric Comparison on NSL-KDD Task}
+    \caption{Metrics Comparison, NSL-KDD Task}
     \label{Fig:CompAccuracyNSL}
 \end{figure}
 
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.48\textwidth]{figures/comp_accuracy_unsw.pdf}
-    \caption{Metric Comparison of on UNSW-NB15 Task}
+    \caption{Metrics Comparison, UNSW-NB15 Task}
     \label{Fig:CompAccuracyUNSW}
 \end{figure}
 
 \begin{table}[]
     \centering
-    \caption{Per-class Precision/Recall on NSL-KDD Task}
+    \caption{Per-class Precision/Recall on the NSL-KDD Task}
     \label{Tab:PrecisionRecall}
     \begin{tabular}{c|c|ccccc}
         \hline

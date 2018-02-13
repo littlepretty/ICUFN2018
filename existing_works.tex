@@ -1,20 +1,11 @@
 \section{Related Work}
-There are a large number of NIDSes that adopt machine learning and data mining approaches,
-and we only review a few of them that achieve state-of-the-art detection performance.
-
 Researchers have modeled the intrusion detection process as an unsupervised
-anomaly detection problem including Mahalanobis-distance based outliner detection~\cite{ComparativeAnomalyNIDS}, density-based outliner detection~\cite{LOF, ComparativeAnomalyNIDS}, and evidence accumulation for ranking outliner~\cite{RankingOutliner}.
-A key advantage of those unsupervised approaches is to address the unavailability of labeled network traffic data. Researchers also investigate methods to obtain useful attacking data and convert them into labeled data~\cite{DARPA, KDDCup, NSL-KDD, UNSW, UNSW1}, which enable us to apply supervised machine learning algorithms to the intrusion detection problem.
-Examples include decision trees~\cite{DecisionTree}, linear and non-linear support vector machines~\cite{SVM}, and NB-Tree~\cite{NB-Tree}. To the best of our knowledge, two works achieved the best prediction accuracy on the aforementioned two different datasets respectively.
-For the UNSW-NB15 dataset, it is reported in~\cite{RampLossKSVCR} that extending K-support vector
-classification-regression~\cite{KSVCR} with ramp loss, called Ramp-KSVCR approach, can achieve the state-of-the-art accuracy of 93.52\%.
-On the other hand, the creators of UNSW-NB15 dataset~\cite{UNSW} proposed an approach called
-Geometric Area Analysis techniques using trapezoidal area estimation (GAA-ADS for short)~\cite{GAA-ADS}.
-It achieves the bese known accuracy on NSL-KDD dataset (99.7\%) and
-a slightly worse accuracy on UNSW-NB15 dataset (92.8\%).
+anomaly detection problem including Mahalanobis-distance based outliner detection~\cite{ComparativeAnomalyNIDS}, density-based outliner detection~\cite{LOF}, and evidence accumulation for ranking outliner~\cite{RankingOutliner}.
+A key advantage of those unsupervised approaches is to address the unavailability of labeled network traffic data. Researchers also investigate methods to obtain useful attacking data and convert them into labeled data~\cite{KDDCup, NSL-KDD, UNSW}, which enable us to apply supervised machine learning algorithms to the intrusion detection problem.
+Examples include decision trees~\cite{DecisionTree}, linear and non-linear support vector machine~\cite{SVM}, and NB-Tree~\cite{NB-Tree}. To the best of our knowledge, two works achieved the best prediction accuracy on the two datasets mentioned above.
+For the UNSW-NB15 dataset, Ramp-KSVCR~\cite{RampLossKSVCR} can achieve the accuracy of 93.52\% by extending K-support vector classification-regression with ramp loss. 
+The creators of UNSW-NB15 dataset~\cite{UNSW} proposed the Geometric Area Analysis techniques using trapezoidal area estimation~\cite{GAA-ADS}, which achieved the best-known accuracy on the NSL-KDD dataset (99.7\%) and
+a slightly worse accuracy on the UNSW-NB15 dataset (92.8\%).
 
-There are limited amount of pioneer works that introduced deep learning approaches to intrusion detection.
-For example, \cite{STL-NIDS} adopts sparse autoencoder and the self-taught learning
-scheme~\cite{SparseAE} to handle the problem of limited amount of labeled data for training supervised model.
-Similar semi-supervised approach have also been applied to
-Discriminative restricted Boltzmann machine~\cite{AnomalyDetectionRBM}.
+There are a limited number of pioneer work to explore deep learning based network intrusion detection systems. For example, \cite{STL-NIDS} adopts the sparse autoencoder and the self-taught learning scheme~\cite{SparseAE} to handle the problem of insufficient labeled data for training supervised models. Similar semi-supervised approaches have also been applied to
+Discriminative Restricted Boltzmann Machine~\cite{AnomalyDetectionRBM}.

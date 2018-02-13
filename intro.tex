@@ -1,43 +1,43 @@
 \section{Introduction}
-
-Network intrusion detection system (NIDS) is the essential security technology that
-aims to protect any networked systems efficiently and automatically.
-As either a hardware device or software application,
-it monitors a network for malicious activities or policy violations.
-By intercepting and analyzing the bi-direction traffics through the network,
-it raises alarm if intrusion, attack or violation are observed.
-There are two general approaches to detect intrusions.
-In signature based intrusion detection, e.g. SNORT~\cite{Snort},
-rules for specific attacks are pre-installed in the system.
-It report suspicious traffic when the traffic matches any signature of known attacks.
-The major drawback of signature matching approach is that
+Security has become a crucial issue for all modern computing and communication systems.
+Network intrusion detection system (NIDS) is the essential protection technology for networked systems.
+It automatically monitors a networked system and detect malicious activities or policy violations.
+Most current NIDSs adopts that signature based approach, e.g., SNORT~\cite{Snort}, in which
+pre-installed rules for specific attacks are used as signature to match known attacks.
+The fatal drawback of signature based NIDS is that
 it is only effective for previously detected attacks that have an identifiable signature.
 As a result, signature database needs to be manually updated whenever a new type of attack
 is discovered, with significant effort, by the network administrator.
-Anomaly detection based approach overcomes these limitations by adopting a certain
-type of machine learning technique to model the trustworthy network activities.
-Traffics that significantly deviates from the built model are treated as malicious.
-This idea have been shown to be able to detect unknown or novel attacks~\cite{NSL-KDD, STL-NIDS}.
-However, if the built model for normal traffics are not generalized enough,
+
+Therefore, researchers have investigated anomaly detection based approach~\cite{STL-NIDS, LOF, RankingOutliner, NB-Tree, RampLossKSVCR, GAA-ADS},
+which overcomes these limitations by adopting data mining or machine learning technique to
+model the trustworthy network activities mathematically.
+Network traffics that significantly deviate from the built model are treated as malicious.
+The advantage of anomaly detection based approach is its ability to detect previously unknown or novel malicious activities.
+An on-line model further frees the network administrators from identifying new patterns,
+or even new types of the abnormal behaviors in the constantly updating network environment.
+However, if the built model for normal or abnormal traffics are not generalized enough,
 anomaly based approach will treat unforeseen normal traffic as malicious,
 suffering from high false positive.
 
+Deep learning recently catch almost everyone's eye because it achieves significant improvement in image and speech recognition~\cite{AlexNet, SpeechDNN}, natural language processing\cite{Word2Vec}, Go playing~\cite{AlphaGo} and many other domains~\cite{DeepLearning}. 
 In this project, we follow the anomaly detection based idea, and tries to enhance it with the
-state-of-art machine learning technology, e.g. various deep neural networks trained by innovative algorithms.
+state-of-art machine learning technology, e.g., various deep neural networks trained by innovative algorithms.
+We expect these innovative deep learning algorithms and training techniques would directly
+help neural networks to achieve better performance in the network intrusion detection problem.
+In addition, the unsupervised generative deep learning models are also promising solutions to malicious traffic detection
+because they are able to extract useful and hierarchical features from vast amount of unlabeled traffics.
 Specifically, we have made the following contributions:
 \begin{itemize}
-    \item Firstly, we introduce the background of deep learning models and techniques,
-        and discuss why they may better solve the network intrusion detection problem.
-    %Besides, we also survey and discuss the status quo of available network intrusion detection datasets
-    %and its implication on applying deep learning models to network intrusion detection.
-    \item Then we briefly review the existing state-of-the-art machine learning solutions to network intrusion detection.
-        After that, we describe several groups of the cutting-edge deep learning models
-        in concisely mathematical languages.
-    \item We conduct a quantitatively comparative study of each of them with
-        two off-line network intrusion detection datasets~\cite{NSL-KDD, UNSW},
-        with the help of our own TensorFlow-based deep learning library, NetLeaner.
-        The detection performance is measured in accuracy, precision and recall.
+    \item Firstly, we introduce a bundle of deep learning models for the network intrusion detection task,
+    including multilayer perceptron, restricted Boltzmann machine, sparse autoencoder, and wide \& deep learning.
+    \item We develop and open-source the NetLearner~\cite{NetLearner} to the research community,
+    including the implementations of introduced models as well as training procedures,
+    both facilitating the reproduction and further extension of this work. 
+    \item We conduct a quantitatively comparative study of considered deep learning models with
+    two network intrusion detection datasets~\cite{NSL-KDD, UNSW}, measuring accuracy, precision and recall.
 \end{itemize}
-We not only make the codebase of NetLearner publicly available to research community,
-but also share the deep learning related hacks and tricks used during the training phase,
-so that future researches can easily reproduce and extend our work.
+Preliminary experimental results show that for the NSL-KDD task, 
+sparse autoencoder achieves similar performance to the existing machine learning solutions;
+deep neural network models with greater generalization capability
+achieve better accuracy than SVM for the UNSW-NB15 dataset.

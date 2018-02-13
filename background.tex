@@ -1,57 +1,45 @@
 \section{Deep Learning Background}
-We identify two main reasons why deep learning succeeds in many areas related
-to artificial intelligence, as well as their implications for network intrusion detection.
+We introduce two main reasons behind the success of deep learning to the rise of artificial intelligence as well as the implications of deep learning for network intrusion detection.
 
-In the supervise learning framework, given the feature representations and inference models,
-learning is an optimization process which minimizes a predefined loss function
-over given training examples.
-The most commonly used optimization algorithm is back-propagation (BP)~\cite{Backpropagation} with gradient descent,
-because computing gradient is Hessian-free and memorization saves a significant amount of computation when
-propagating backward level by level.
-However, it is hard to train deep neural networks and achieve optimal weights only with BP.
-The first problem is that the cost function is usually non-convex;
-optimizing algorithms using only first-order gradient is likely to be stuck at a poor local minimum.
+In the supervised learning framework, given the feature representations and inference models, learning is an optimization process that minimizes a predefined loss function over the training examples.
+The most commonly-used optimization algorithm is back-propagation (BP)~\cite{Backpropagation} with gradient descent,
+because computing gradient is Hessian-free and memorization saves a significant amount of computation when propagating backward level by level.
+However, it is challenging to train deep neural networks with optimal weights only using BP.
+The first problem is that the cost function is usually non-convex, and
+optimizing algorithms only with the first-order gradient is likely to be stuck at a poor local minimum.
 Secondly, exploding and vanishing gradient makes back-propagation difficult to train models with many layers stacked together,
 such as deep recurrent neural networks.
-Even if we can tolerate the long training time and carefully deal with gradient exploding and vanishing,
-the trained model is usually over-fitted to the training dataset, and not able to generalize well to the testing or future datasets.
+Even if we can tolerate the long training time and carefully deal with the gradient exploding and vanishing,
+the trained model is often over-fitted to the training dataset, and thus fails to generalize to the testing or future datasets.
 
-The emergence of many novel learning algorithms and training techniques enables us to train deep
-neural networks that achieve good suboptimal minimums.
+The emergence of many novel learning algorithms and training techniques enables us to train deep neural networks that achieve good suboptimal minimums.
 For example, stochastic gradient descent (SGD) with mini-batches can significantly increase the training speed comparing
 to normal gradient descent on the entire dataset.
 In each step of gradient descent, researchers have shown that momentum~\cite{Momentum} can
 prevent SGD from oscillating across but pushing along the shallow ravine.
 Along with decaying learning rate, momentum-based optimization algorithms (e.g., Adam~\cite{Adam}) often find better local minimums.
-To prevent over-fitting, researchers have proposed dropout~\cite{Dropout} to average over exponential number of neural networks.
-These general learning algorithms and training techniques will directly help neural networks achieve
-better performance for the network intrusion detection problem.
+To prevent over-fitting, researchers have proposed dropout~\cite{Dropout} to average over an exponential number of neural networks.
+These general learning algorithms and training techniques would directly help neural networks to achieve better performance for the network intrusion detection problem.
 
-Another breakthrough in the deep learning area is that researchers have successfully trained
-a number of meaningful unsupervised generative models.
-Different from supervised models (or discriminative models) that aim to discover
-the relationship between input variables and target labels (or the conditional probability distribution of the targets given the inputs),
-these models aim to learn the joint probability distribution or the joint conditional distribution,
-of all variables for a phenomenon from the given dataset.
+Another breakthrough in the deep learning area is that researchers have successfully trained a number of useful unsupervised generative models.
+Different from supervised models or discriminative models that aim to discover the relationship between input variables and target labels (or the conditional probability distribution of the targets given the inputs),
+these models aim to learn the joint probability distribution or the joint conditional distribution of all variables for one phenomenon from the given dataset.
 The resulting generative model is powerful in many ways.
-First, given the well-trained probability distribution, the model can synthesize meaningful data
-comparable to real examples in the training set.
-For example, Auxiliary-Classifier Generative Adversarial Nets (AC-GAN)~\cite{AC-GAN} can generate  high-quality images after training on ImageNet dataset~\cite{ImageNet};
-both stacked denoising autoencoder~\cite{DenoiseAE} and deep brief nets~\cite{DeepBeliefNets} can synthesize handwritten digits after learning from the MNIST dataset.
+First, given the well-trained probability distribution, the model can synthesize meaningful data comparable to real examples in the training set.
+For example, Auxiliary-Classifier Generative Adversarial Nets (AC-GAN)~\cite{AC-GAN} can generate high-quality images after training on ImageNet dataset~\cite{ImageNet};
+both AC-GAN and deep brief nets~\cite{DeepBeliefNets} can synthesize handwritten digits after learning from the MNIST dataset.
 Second, the ability to generate high quality faked data indicates that
 the model has learned better feature representations from the unlabeled data.
-For example, the features extracted from the hidden units of sparse autoencoder
-can significantly improve the performance of support vector classifier~\cite{SparseAE}.
-Additionally, researchers have shown that it is usually an excellent strategy to initialize deep neural networks with the weights from a successfully trained generative model~\cite{DeepBeliefNets, Momentum}.
+For example, the features extracted from the hidden units of sparse autoencoder can significantly improve the performance of support vector classifier~\cite{SparseAE}.
+Additionally, researchers have shown that it is an excellent strategy to initialize deep neural networks with the weights from a successfully trained generative model~\cite{DeepBeliefNets, Momentum}.
 
 In the area of network intrusion detection, the amount of network traffic data is massive,
 %e.g., in the order of terabytes per day in a large monitored network. In practice, the amount of data is 
 which makes it hard for security analysts to find malicious patterns and label anomalies.
-This situation makes an unsupervised generative model a promising solution
+This situation makes the unsupervised generative model a promising solution
 to traffic classification. %since it can be trained unsupervised:
 First, it utilizes the vast amount of unlabeled data to learning useful and hierarchical features. Second, it effectively initializes the weights of the hidden layers in a deep neural network, which allows further fine-tuning towards a high-performance classifier.
-In this paper, we investigate two types of generative models, i.e.,
-restricted Boltzmann machine and autoencoders(see section~\ref{Sec:Architectures}). 
+Among the various deep learning models we investigate in this paper, there are two types of generative models, i.e., Restricted Boltzmann Machine and Autoencoders. %(See Section~\ref{Sec:Architectures}). 
 
 %In addition to the sophisticated and efficient learning algorithms, abundant open data in the domain of image classification, natural language processing, or machine translation actually drive the novel and complex neural network models and make them successful.
 %Table~\ref{Tab:Datasets} lists the dimension and amount of the training dataset for various image classification tasks.

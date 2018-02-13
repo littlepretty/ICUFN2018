@@ -325,6 +325,8 @@
 \usepackage{graphicx}
 \usepackage{caption}
 
+\newcommand{\kevin}[1]{{\color{red}{#1}}}
+%\newcommand{\kevin}[1]{{{#1}}} 
 
 % *** Do not adjust lengths that control margins, column widths, etc. ***
 % *** Do not use packages that alter fonts (such as pslatex).         ***
@@ -345,8 +347,8 @@
 % not capitalized unless they are the first or last word of the title.
 % Linebreaks \\ can be used within to get better formatting as desired.
 % Do not put math or special symbols in the title.
-\title{A Comparative Study of Deep Learning Approaches in Off-Line Network Intrusion Detection}
-
+%\title{A Comparative Study of Deep Learning Approaches in Off-Line Network Intrusion Detection}
+\title{A Comparative Study of Off-Line Deep Learning Based Network Intrusion Detection}
 
 % author names and affiliations
 % use a multiple column layout for up to three different
@@ -355,18 +357,18 @@
 \IEEEauthorblockN{Jiaqi Yan}
 \IEEEauthorblockA{Department of Computer Science\\
 Illinois Institute of Technology\\
-Chicago, Illinois 60616\\
+%Chicago, Illinois 60616\\
 Email: jyan31@hawk.iit.edu}
 \and
-\IEEEauthorblockN{Jin Dong}
+\IEEEauthorblockN{Dong Jin}
 \IEEEauthorblockA{Department of Computer Science\\
 Illinois Institute of Technology\\
-Chicago, Illinois 60616\\
+%Chicago, Illinois 60616\\
 Email: dong.jin@iit.edu}
 \and
 \IEEEauthorblockN{Cheol Won Lee}
 \IEEEauthorblockA{National Security Research Institute\\
-1559, Yuseong-daero, Yuseong-gu\\
+%1559 Yuseong-daero, Yuseong-gu\\
 Daejeon, South Korea\\
 Email: cheolee@nsr.re.kr}
 }
@@ -406,20 +408,12 @@ Email: cheolee@nsr.re.kr}
 % As a general rule, do not put math, special symbols or citations
 % in the abstract
 \begin{abstract}
-Network intrusion detection system (NIDS) is essential to the security of any communication systems.
-Recently a handful of novel deep neural networks bundled with more advanced and smarter
-training algorithms have achieved unprecedentedly good performance on image classification,
-natural language processing, speech recognition and many other research branches.
-Motivated by these impressive improvements in the field of artificial intelligence,
-this paper introduces a bunch of deep learning models to the design of NIDS
-and conducts a comparative evaluation of these models.
-Firstly, we introduce general deep learning methodology and its potential implication on the
-network intrusion detection problem.
-Then we briefly review the existing machine learning solutions to two network intrusion detection tasks,
-namely the NSL-KDD dataset and the UNSW-NB15 dataset.
-After describing a set of cutting-edge deep learning models in concisely mathematical languages,
-we conduct a quantitatively comparative evaluation of them with the help of
-our own TensorFlow-based deep learning library, NetLeaner.
+%Network intrusion detection systems (NIDS) are essential to the security of any communication systems. Recently a handful of novel deep neural networks bundled with more advanced and smarter training algorithms have achieved unprecedentedly good performance on image classification, natural language processing, speech recognition and many other research branches. Motivated by these impressive improvements in the field of artificial intelligence, this paper introduces a bunch of deep learning models to the design of NIDS and conducts a comparative evaluation of these models. Firstly, we introduce general deep learning methodology and its potential implication on the network intrusion detection problem. Then we briefly review the existing machine learning solutions to two network intrusion detection tasks, namely the NSL-KDD dataset and the UNSW-NB15 dataset. After describing a set of cutting-edge deep learning models in concisely mathematical languages, we conduct a quantitatively comparative evaluation of them with the help of our own TensorFlow-based deep learning library, NetLeaner.
+
+Network intrusion detection systems (NIDS) are essential security building-blocks for today's organizations to ensure safe and trusted communication of information. 
+We study the feasibility of off-line deep learning based NIDSes by constructing the detection engine with multiple advanced deep learning models and conducting a quantitative and comparative evaluation of those models. This work is motivated by the facts that novel deep neural networks achieve state-of-the-art results across a range of hard problem spaces, such as image classification and natural language processing.
+In this paper, we first introduce the general deep learning methodology and its potential implication on the network intrusion detection problem. We then review multiple machine learning solutions to two network intrusion detection tasks (NSL-KDD and UNSW-NB15 datasets).
+We develop a TensorFlow-based deep learning library, called NetLearner, and implement a handful of cutting-edge deep learning models for NIDS. Finally, we conduct a quantitative and comparative performance evaluation of those models using NetLearner. 
 \end{abstract}
 
 % no keywords
