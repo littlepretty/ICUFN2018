@@ -22,53 +22,6 @@ Both MLPs are trained with Adam optimizer~\cite{Adam} for 160 epochs with a batc
 During the training, the learning rate decays from 0.1 exponentially with the base of 0.96.
 We do not include regularization in the model, but we apply dropout of probability 0.2 to prevent over-fitting.
 
-\iffalse
-Multilayer perceptron (MLP) is a classic deep learning classifier with simple
-design of the connectivity between neurons.
-It is a fully connected feed-forward neural network, as shown in Figure~\ref{Fig:MLPArchitecture}.
-By introducing non-linear neural units (perceptrons), it can distinguish data that are
-not linearly separable.
-However, the non-linearity make it very hard to train a deep MLP of more than three layers,
-even if people have proposed the efficient back-propagation learning algorithm~\cite{Backpropagation}.
-Recently it revived due to the various new training techniques designed by deep learning community,
-including Stochastic Gradient Descent (SGD), Adam optimizer~\cite{Adam},
-batch normalization~\cite{BatchNorm} and Dropout~\cite{Dropout}.
-Except for the number of neurons in each layer and number of layers,
-MPL can also be tuned with different activation functions, or neural types.
-The most popular two, which are used in this project, are logistic function
-and rectifier linear unit.
-Logistic function is written as
-\begin{align}
-    f(x) &= \frac{1}{1 + e^{-x}}
-\end{align}
-It has a very useful property when we applying back-propagation:
-\begin{align}
-    f'(x) &= f(x) (1-f(x))
-\end{align}
-Recently, most deep neural networks adopt rectifier neural unit and
-achieved very good performance~\cite{DeepLearning}.
-Rectifier linear unit is defined as
-\begin{align}
-    f(x) &= \max(0, x)
-\end{align}
-Let $\mathbf{a}^{(l)}$ be the activation of layer $l$,
-$\mathbf{W}^{(l)}$ and $\mathbf{b}^{(l)}$ be layer $l$'s parameter.
-With activation function defined, we have the following recursive formula that describes
-the feed-forward step of the perceptron network.
-\begin{align}
-    \mathbf{z}^{(l+1)} &= \mathbf{W}^{(l)} \mathbf{a}^{(l)} + \mathbf{b}^{(l)} \label{Equ:MLPFeedForward1}\\
-    \mathbf{a}^{(l+1)} &= f(\mathbf{z}^{(l+1)})
-    \label{Equ:MLPFeedForward2}
-\end{align}
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.45\textwidth]{figures/multilayer_perceptron.png}
-    \caption{A multilayer perceptron neural network with 1 hidden layer.
-        Figure courtesy of Teijiro Isokawa, Haruhiko Nishimura and Nobuyuki Matsui.}
-    \label{Fig:MLPArchitecture}
-\end{figure}
-\fi
 
 \subsection{Restricted Boltzmann Machine}
 Restricted Boltzmann machine (RBM)~\cite{DeepBeliefNets} is a type of energy-based models, which associate a scalar energy to each configuration vector of the variables in the network.

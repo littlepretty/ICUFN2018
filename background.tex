@@ -15,8 +15,8 @@ the trained model is often over-fitted to the training dataset, and thus fails t
 The emergence of many novel learning algorithms and training techniques enables us to train deep neural networks that achieve good suboptimal minimums.
 For example, stochastic gradient descent (SGD) with mini-batches can significantly increase the training speed comparing
 to normal gradient descent on the entire dataset.
-In each step of gradient descent, researchers have shown that momentum~\cite{Momentum} can
-prevent SGD from oscillating across but pushing along the shallow ravine.
+In each step of gradient descent, researchers have shown that momentum can
+prevent SGD from ``oscillating across but pushing along the shallow ravine"~\cite{Momentum}.
 Along with decaying learning rate, momentum-based optimization algorithms (e.g., Adam~\cite{Adam}) often find better local minimums.
 To prevent over-fitting, researchers have proposed dropout~\cite{Dropout} to average over an exponential number of neural networks.
 These general learning algorithms and training techniques would directly help neural networks to achieve better performance for the network intrusion detection problem.
@@ -39,7 +39,7 @@ which makes it hard for security analysts to find malicious patterns and label a
 This situation makes the unsupervised generative model a promising solution
 to traffic classification. %since it can be trained unsupervised:
 First, it utilizes the vast amount of unlabeled data to learning useful and hierarchical features. Second, it effectively initializes the weights of the hidden layers in a deep neural network, which allows further fine-tuning towards a high-performance classifier.
-Among the various deep learning models we investigate in this paper, there are two types of generative models, i.e., Restricted Boltzmann Machine and Autoencoders. %(See Section~\ref{Sec:Architectures}). 
+Among the various deep learning models we investigate in this paper, there are two types of generative models, i.e., restricted Boltzmann machine and autoencoders.
 
 %In addition to the sophisticated and efficient learning algorithms, abundant open data in the domain of image classification, natural language processing, or machine translation actually drive the novel and complex neural network models and make them successful.
 %Table~\ref{Tab:Datasets} lists the dimension and amount of the training dataset for various image classification tasks.
